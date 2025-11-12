@@ -11,8 +11,29 @@ SPECIAL_VERSION_LIST = ['.jre', '.Final', '.RELEASE', '.v']
 def version_greater_than(source_version, target_version):
     source_version = format_version(source_version, SPECIAL_VERSION_LIST)
     target_version = format_version(target_version, SPECIAL_VERSION_LIST)
-    sv = parse(source_version)
-    tv = parse(target_version)
+    
+    # Try to parse versions, catch InvalidVersion for milestone versions like "2025.1.0-M4"
+    try:
+        sv = parse(source_version)
+    except:
+        sv = None
+    
+    try:
+        tv = parse(target_version)
+    except:
+        tv = None
+    
+    # If both versions failed to parse, use special version comparison
+    if sv is None and tv is None:
+        return special_version_greater_than(source_version, target_version)
+    
+    # If only source failed to parse, check if it's a milestone vs stable
+    if sv is None:
+        return special_version_greater_than(source_version, target_version)
+    
+    # If only target failed to parse, check if it's a milestone vs stable
+    if tv is None:
+        return special_version_greater_than(source_version, target_version)
 
     if sv == tv:
         return True
