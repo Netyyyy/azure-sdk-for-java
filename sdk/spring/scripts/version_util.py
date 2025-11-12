@@ -5,7 +5,7 @@ import unittest
 from itertools import takewhile
 from packaging.version import parse
 
-SPECIAL_VERSION_LIST = ['.jre', '.Final', '.RELEASE', '.v']
+SPECIAL_VERSION_LIST = ['.jre', '.Final', '.RELEASE', '.v', '-M', '-RC']
 
 
 def version_greater_than(source_version, target_version):
@@ -48,7 +48,7 @@ def version_greater_than(source_version, target_version):
 
 def format_version(version, str_list):
     for i in str_list:
-        if version.find(i):
+        if version.find(i) != -1:
             version = version.partition(i)[0]
     return version
 
