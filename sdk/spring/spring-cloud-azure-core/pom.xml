@@ -43,6 +43,11 @@
       <version>7.0.0-RC3</version> <!-- {x-version-update;springboot3_org.springframework:spring-context;external_dependency} -->
     </dependency>
     <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>3.0.0</version> <!-- {x-version-update;springboot3_jakarta.annotation:jakarta.annotation-api;external_dependency} -->
+    </dependency>
+    <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-core</artifactId>
       <version>1.57.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->

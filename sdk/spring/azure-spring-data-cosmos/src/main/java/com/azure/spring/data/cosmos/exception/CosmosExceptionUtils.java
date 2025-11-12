@@ -77,7 +77,7 @@ public class CosmosExceptionUtils {
                 }
             } else if (statusCode == HttpStatus.PRECONDITION_FAILED.value()) {
                 cosmosAccessException = new CosmosPreconditionFailedException(message, cosmosException);
-            } else if (statusCode == HttpStatus.PAYLOAD_TOO_LARGE.value()) {
+            } else if (statusCode == HttpStatus.CONTENT_TOO_LARGE.value()) {
                 cosmosAccessException = new CosmosRequestEntityTooLargeException(message, cosmosException);
             } else if (statusCode == HttpStatus.TOO_MANY_REQUESTS.value()) {
                 cosmosAccessException = new CosmosRequestRateTooLargeException(message, cosmosException);

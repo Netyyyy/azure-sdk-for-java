@@ -3,9 +3,9 @@
 
 package com.azure.spring.cloud.core.implementation.connectionstring;
 
+import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.lang.NonNull;
 import org.springframework.util.StringUtils;
 
 import java.net.URI;
@@ -36,7 +36,7 @@ class ConnectionString {
     private URI endpoint = null;
     private final Map<String, String> segments = new HashMap<>();
 
-    ConnectionString(String str, @NonNull ConnectionStringType type) {
+    ConnectionString(String str, @Nonnull ConnectionStringType type) {
         this.str = str;
         this.type = type;
         resolveSegments();

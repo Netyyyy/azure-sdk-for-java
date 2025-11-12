@@ -6,6 +6,7 @@ module com.azure.spring.data.cosmos {
     requires transitive com.azure.cosmos;
     requires com.fasterxml.jackson.datatype.jdk8;
     requires com.fasterxml.jackson.module.paramnames;
+    requires jakarta.annotation;
     requires java.desktop;
     requires org.apache.commons.lang3;
     requires org.slf4j;
