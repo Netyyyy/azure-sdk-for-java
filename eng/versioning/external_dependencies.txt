@@ -1,6 +1,9 @@
 # To avoid dependency conflicts between SDK and Spring, when modifying or adding dependencies,
-# make sure the version is same to sdk/spring/scripts/spring_boot_2.7.18_managed_external_dependencies.txt
-# If your version is different from sdk/spring/scripts/spring_boot_2.7.18_managed_external_dependencies.txt,
+# make sure the version matches the appropriate Spring Boot version:
+#  - For Spring Boot 2.x: sdk/spring/scripts/spring_boot_2.7.18_managed_external_dependencies.txt
+#  - For Spring Boot 3.x: sdk/spring/scripts/spring_boot_3.5.5_managed_external_dependencies.txt  
+#  - For Spring Boot 4.x: sdk/spring/scripts/spring_boot_4.0.0-RC2_managed_external_dependencies.txt
+# If your version is different from the managed dependencies files,
 # please discuss with Spring Integration team members:
 # @rujche (rujche), @saragluna (xiada).
 # Thanks.
