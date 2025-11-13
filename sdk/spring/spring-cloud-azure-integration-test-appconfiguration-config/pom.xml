@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.5</version> <!-- {x-version-update;springboot3_org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
-    <relativePath /> <!-- lookup parent from repository -->
+    <version>3.5.5</version> 
+    <relativePath /> 
   </parent>
   <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-integration-test-appconfiguration-config</artifactId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:spring-cloud-azure-integration-test-appconfiguration-config;current} -->
+  <version>1.0.0</version> 
   <properties>
     <java.version>17</java.version>
     <skipSpringITs>true</skipSpringITs>
@@ -21,7 +19,7 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-appconfiguration-config</artifactId>
-      <version>6.1.0-beta.1</version> <!-- {x-version-update;com.azure.spring:spring-cloud-azure-starter-appconfiguration-config;current} -->
+      <version>6.1.0-beta.1</version> 
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -30,16 +28,25 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <version>3.5.5</version> <!-- {x-version-update;springboot3_org.springframework.boot:spring-boot-starter-test;external_dependency} -->
+      <version>3.5.5</version> 
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+  </repositories>
+
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.5.3</version> <!-- {x-version-update;springboot3_org.apache.maven.plugins:maven-failsafe-plugin;external_dependency} -->
+        <version>3.5.3</version> 
         <executions>
           <execution>
             <id>default</id>
@@ -64,7 +71,7 @@
   </build>
 
   <profiles>
-    <!-- Library cannot build for Java 16 and below -->
+    
     <profile>
       <id>below-java-17</id>
       <activation>
@@ -75,7 +82,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.13</version> <!-- {x-version-update;org.jacoco:jacoco-maven-plugin;external_dependency} -->
+            <version>0.8.13</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -84,7 +91,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.14.0</version> <!-- {x-version-update;org.apache.maven.plugins:maven-compiler-plugin;external_dependency} -->
+            <version>3.14.0</version> 
             <configuration>
               <skipMain>true</skipMain>
               <skip>true</skip>
@@ -94,7 +101,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.5.3</version> <!-- {x-version-update;org.apache.maven.plugins:maven-surefire-plugin;external_dependency} -->
+            <version>3.5.3</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -103,7 +110,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.11.3</version> <!-- {x-version-update;org.apache.maven.plugins:maven-javadoc-plugin;external_dependency} -->
+            <version>3.11.3</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -112,7 +119,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>3.4.2</version> <!-- {x-version-update;org.apache.maven.plugins:maven-jar-plugin;external_dependency} -->
+            <version>3.4.2</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -121,7 +128,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.6.0</version> <!-- {x-version-update;org.apache.maven.plugins:maven-checkstyle-plugin;external_dependency} -->
+            <version>3.6.0</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -130,7 +137,7 @@
           <plugin>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-maven-plugin</artifactId>
-            <version>4.8.3.1</version> <!-- {x-version-update;com.github.spotbugs:spotbugs-maven-plugin;external_dependency} -->
+            <version>4.8.3.1</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
@@ -139,7 +146,7 @@
           <plugin>
             <groupId>org.revapi</groupId>
             <artifactId>revapi-maven-plugin</artifactId>
-            <version>0.15.1</version> <!-- {x-version-update;org.revapi:revapi-maven-plugin;external_dependency} -->
+            <version>0.15.1</version> 
             <configuration>
               <skip>true</skip>
             </configuration>
