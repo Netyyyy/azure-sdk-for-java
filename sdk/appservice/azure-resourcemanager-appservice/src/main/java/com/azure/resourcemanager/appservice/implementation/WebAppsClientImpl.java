@@ -173,7 +173,7 @@ public final class WebAppsClientImpl
      * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "WebSiteManagementCli")
+    @ServiceInterface(name = "WebSiteManagementClientWebApps")
     public interface WebAppsService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Web/sites")
@@ -4908,10 +4908,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion,
+                accept, context))
             .<PagedResponse<SiteInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -4938,11 +4939,10 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context)
+        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -5036,10 +5036,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                includeSlots, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                includeSlots, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -5074,11 +5075,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, includeSlots,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -5209,10 +5211,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -5249,10 +5252,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -5349,10 +5353,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -5395,10 +5400,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context);
     }
 
     /**
@@ -5604,10 +5610,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName, name, deleteMetrics,
-                deleteEmptyServerFarm, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                deleteEmptyServerFarm, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -5646,10 +5653,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), resourceGroupName, name, deleteMetrics, deleteEmptyServerFarm,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -5753,10 +5761,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -5799,10 +5808,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), siteEnvelope, accept, context);
+            apiVersion, siteEnvelope, accept, context);
     }
 
     /**
@@ -6005,10 +6015,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.analyzeCustomHostname(this.client.getEndpoint(), resourceGroupName, name,
-                hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                hostname, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -6044,10 +6055,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.analyzeCustomHostname(this.client.getEndpoint(), resourceGroupName, name, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -6143,10 +6155,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.applySlotConfigToProduction(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -6187,10 +6200,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.applySlotConfigToProduction(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context);
+            this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context);
     }
 
     /**
@@ -6286,10 +6300,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.backup(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -6330,10 +6345,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.backup(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), request, accept, context);
+            apiVersion, request, accept, context);
     }
 
     /**
@@ -6422,10 +6438,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listBackups(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<BackupItemInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -6462,11 +6479,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listBackups(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -6577,10 +6595,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getBackupStatus(this.client.getEndpoint(), resourceGroupName, name,
-                backupId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                backupId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -6619,10 +6638,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getBackupStatus(this.client.getEndpoint(), resourceGroupName, name, backupId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -6716,10 +6736,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteBackup(this.client.getEndpoint(), resourceGroupName, name, backupId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -6759,10 +6780,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteBackup(this.client.getEndpoint(), resourceGroupName, name, backupId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -6867,10 +6889,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listBackupStatusSecrets(this.client.getEndpoint(), resourceGroupName, name,
-                backupId, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                backupId, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -6919,10 +6942,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listBackupStatusSecrets(this.client.getEndpoint(), resourceGroupName, name, backupId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -7039,10 +7063,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restore(this.client.getEndpoint(), resourceGroupName, name, backupId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -7087,10 +7112,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restore(this.client.getEndpoint(), resourceGroupName, name, backupId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -7293,10 +7319,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listBasicPublishingCredentialsPolicies(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<CsmPublishingCredentialsPoliciesEntityInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -7335,11 +7362,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listBasicPublishingCredentialsPolicies(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -7456,10 +7484,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getFtpAllowed(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -7495,10 +7524,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getFtpAllowed(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -7593,11 +7623,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateFtpAllowed(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity, accept,
-                context))
+                this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -7641,11 +7671,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateFtpAllowed(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity, accept,
-            context);
+            this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context);
     }
 
     /**
@@ -7740,10 +7770,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getScmAllowed(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -7779,10 +7810,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getScmAllowed(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -7877,11 +7909,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateScmAllowed(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity, accept,
-                context))
+                this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -7925,11 +7957,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateScmAllowed(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity, accept,
-            context);
+            this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context);
     }
 
     /**
@@ -8024,10 +8056,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listConfigurations(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteConfigResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -8065,11 +8098,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listConfigurations(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -8184,10 +8218,11 @@ public final class WebAppsClientImpl
         } else {
             appSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateApplicationSettings(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), appSettings, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, appSettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -8228,10 +8263,11 @@ public final class WebAppsClientImpl
         } else {
             appSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateApplicationSettings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), appSettings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, appSettings, accept, context);
     }
 
     /**
@@ -8430,10 +8466,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listApplicationSettings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -8468,10 +8505,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listApplicationSettings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -8566,10 +8604,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateAuthSettings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettings, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteAuthSettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -8612,10 +8651,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateAuthSettings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteAuthSettings, accept, context);
     }
 
     /**
@@ -8710,10 +8750,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAuthSettings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -8749,10 +8790,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAuthSettings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -8842,10 +8884,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAuthSettingsV2WithoutSecrets(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -8881,10 +8924,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAuthSettingsV2WithoutSecrets(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -8981,10 +9025,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettingsV2.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateAuthSettingsV2(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettingsV2, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteAuthSettingsV2, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9027,10 +9072,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettingsV2.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateAuthSettingsV2(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettingsV2, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteAuthSettingsV2, accept, context);
     }
 
     /**
@@ -9125,10 +9171,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAuthSettingsV2(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9164,10 +9211,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAuthSettingsV2(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -9264,11 +9312,11 @@ public final class WebAppsClientImpl
         } else {
             azureStorageAccounts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateAzureStorageAccounts(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), azureStorageAccounts, accept,
-                context))
+                name, this.client.getSubscriptionId(), apiVersion, azureStorageAccounts, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9312,10 +9360,11 @@ public final class WebAppsClientImpl
         } else {
             azureStorageAccounts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateAzureStorageAccounts(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), azureStorageAccounts, accept, context);
+            this.client.getSubscriptionId(), apiVersion, azureStorageAccounts, accept, context);
     }
 
     /**
@@ -9411,10 +9460,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAzureStorageAccounts(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9450,10 +9500,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listAzureStorageAccounts(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -9548,10 +9599,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateBackupConfiguration(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9593,10 +9645,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateBackupConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -9687,10 +9740,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteBackupConfiguration(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9725,10 +9779,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteBackupConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -9814,10 +9869,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getBackupConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -9853,10 +9909,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getBackupConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -9943,10 +10000,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAppSettingsKeyVaultReferences(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ApiKVReferenceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -9983,11 +10041,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getAppSettingsKeyVaultReferences(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -10101,10 +10160,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAppSettingKeyVaultReference(this.client.getEndpoint(), resourceGroupName,
-                name, appSettingKey, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, appSettingKey, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -10144,10 +10204,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAppSettingKeyVaultReference(this.client.getEndpoint(), resourceGroupName, name, appSettingKey,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -10240,10 +10301,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteConnectionStringKeyVaultReferences(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ApiKVReferenceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -10280,11 +10342,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getSiteConnectionStringKeyVaultReferences(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -10402,11 +10465,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteConnectionStringKeyVaultReference(this.client.getEndpoint(),
-                resourceGroupName, name, connectionStringKey, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, connectionStringKey, this.client.getSubscriptionId(), apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -10447,10 +10511,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSiteConnectionStringKeyVaultReference(this.client.getEndpoint(), resourceGroupName, name,
-            connectionStringKey, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            connectionStringKey, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -10551,10 +10616,11 @@ public final class WebAppsClientImpl
         } else {
             connectionStrings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateConnectionStrings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), connectionStrings, accept, context))
+                this.client.getSubscriptionId(), apiVersion, connectionStrings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -10596,10 +10662,11 @@ public final class WebAppsClientImpl
         } else {
             connectionStrings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateConnectionStrings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionStrings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionStrings, accept, context);
     }
 
     /**
@@ -10691,10 +10758,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listConnectionStrings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -10729,10 +10797,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listConnectionStrings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -10820,10 +10889,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getDiagnosticLogsConfiguration(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -10859,10 +10929,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getDiagnosticLogsConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -10957,10 +11028,11 @@ public final class WebAppsClientImpl
         } else {
             siteLogsConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateDiagnosticLogsConfig(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), siteLogsConfig, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, siteLogsConfig, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11003,10 +11075,11 @@ public final class WebAppsClientImpl
         } else {
             siteLogsConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateDiagnosticLogsConfig(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteLogsConfig, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteLogsConfig, accept, context);
     }
 
     /**
@@ -11107,10 +11180,11 @@ public final class WebAppsClientImpl
         } else {
             metadata.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateMetadata(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), metadata, accept, context))
+                this.client.getSubscriptionId(), apiVersion, metadata, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11151,10 +11225,11 @@ public final class WebAppsClientImpl
         } else {
             metadata.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateMetadata(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), metadata, accept, context);
+            this.client.getSubscriptionId(), apiVersion, metadata, accept, context);
     }
 
     /**
@@ -11244,10 +11319,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listMetadata(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11282,10 +11358,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listMetadata(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            apiVersion, accept, context);
     }
 
     /**
@@ -11372,10 +11449,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPublishingCredentials(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11411,10 +11489,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listPublishingCredentials(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -11605,10 +11684,11 @@ public final class WebAppsClientImpl
         } else {
             pushSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSitePushSettings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), pushSettings, accept, context))
+                this.client.getSubscriptionId(), apiVersion, pushSettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11649,10 +11729,11 @@ public final class WebAppsClientImpl
         } else {
             pushSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSitePushSettings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), pushSettings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, pushSettings, accept, context);
     }
 
     /**
@@ -11744,10 +11825,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSitePushSettings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11782,10 +11864,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSitePushSettings(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -11872,10 +11955,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSlotConfigurationNames(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -11910,10 +11994,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSlotConfigurationNames(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -12008,10 +12093,11 @@ public final class WebAppsClientImpl
         } else {
             slotConfigNames.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSlotConfigurationNames(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), slotConfigNames, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, slotConfigNames, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -12054,10 +12140,11 @@ public final class WebAppsClientImpl
         } else {
             slotConfigNames.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSlotConfigurationNames(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), slotConfigNames, accept, context);
+            this.client.getSubscriptionId(), apiVersion, slotConfigNames, accept, context);
     }
 
     /**
@@ -12155,10 +12242,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -12195,10 +12283,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -12297,10 +12386,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateConfiguration(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -12341,10 +12431,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context);
     }
 
     /**
@@ -12551,10 +12642,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -12595,10 +12687,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateConfiguration(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context);
     }
 
     /**
@@ -12693,10 +12786,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listConfigurationSnapshotInfo(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteConfigurationSnapshotInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -12736,11 +12830,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listConfigurationSnapshotInfo(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -12867,10 +12962,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getConfigurationSnapshot(this.client.getEndpoint(), resourceGroupName, name,
-                snapshotId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                snapshotId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -12909,10 +13005,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getConfigurationSnapshot(this.client.getEndpoint(), resourceGroupName, name, snapshotId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13007,11 +13104,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.recoverSiteConfigurationSnapshot(this.client.getEndpoint(), resourceGroupName, name,
-                    snapshotId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.recoverSiteConfigurationSnapshot(this.client.getEndpoint(),
+                resourceGroupName, name, snapshotId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -13050,10 +13147,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.recoverSiteConfigurationSnapshot(this.client.getEndpoint(), resourceGroupName, name, snapshotId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13141,10 +13239,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/octet-stream";
         return FluxUtil
             .withContext(context -> service.getWebSiteContainerLogs(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -13179,10 +13278,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/octet-stream";
         context = this.client.mergeContext(context);
         return service.getWebSiteContainerLogs(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13268,10 +13368,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/zip";
         return FluxUtil
             .withContext(context -> service.getContainerLogsZip(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -13306,10 +13407,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/zip";
         context = this.client.mergeContext(context);
         return service.getContainerLogsZip(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13397,10 +13499,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listContinuousWebJobs(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ContinuousWebJobInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -13438,11 +13541,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listContinuousWebJobs(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -13558,10 +13662,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -13601,10 +13706,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13702,10 +13808,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -13744,10 +13851,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13841,10 +13949,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -13884,10 +13993,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -13984,10 +14094,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -14027,10 +14138,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopContinuousWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -14121,10 +14233,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProductionSiteDeploymentStatuses(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<CsmDeploymentStatus>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -14160,11 +14273,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProductionSiteDeploymentStatuses(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -14272,11 +14386,10 @@ public final class WebAppsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter deploymentStatusId is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.getProductionSiteDeploymentStatus(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, name, deploymentStatusId,
-                this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.getProductionSiteDeploymentStatus(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, name, deploymentStatusId, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -14315,10 +14428,11 @@ public final class WebAppsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter deploymentStatusId is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProductionSiteDeploymentStatus(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, deploymentStatusId, this.client.getApiVersion(), accept, context);
+            resourceGroupName, name, deploymentStatusId, apiVersion, accept, context);
     }
 
     /**
@@ -14508,10 +14622,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeployments(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<DeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -14548,11 +14663,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listDeployments(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -14664,10 +14780,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getDeployment(this.client.getEndpoint(), resourceGroupName, name, id,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -14707,10 +14824,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getDeployment(this.client.getEndpoint(), resourceGroupName, name, id,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -14811,10 +14929,11 @@ public final class WebAppsClientImpl
         } else {
             deployment.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createDeployment(this.client.getEndpoint(), resourceGroupName, name, id,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), deployment, accept, context))
+                this.client.getSubscriptionId(), apiVersion, deployment, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -14860,10 +14979,11 @@ public final class WebAppsClientImpl
         } else {
             deployment.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createDeployment(this.client.getEndpoint(), resourceGroupName, name, id,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), deployment, accept, context);
+            this.client.getSubscriptionId(), apiVersion, deployment, accept, context);
     }
 
     /**
@@ -14961,10 +15081,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteDeployment(this.client.getEndpoint(), resourceGroupName, name, id,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -15003,10 +15124,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteDeployment(this.client.getEndpoint(), resourceGroupName, name, id,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -15100,10 +15222,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentLog(this.client.getEndpoint(), resourceGroupName, name, id,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -15144,10 +15267,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listDeploymentLog(this.client.getEndpoint(), resourceGroupName, name, id,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -15248,10 +15372,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.discoverBackup(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -15294,10 +15419,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.discoverBackup(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -15394,10 +15520,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDomainOwnershipIdentifiers(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<IdentifierInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -15434,11 +15561,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listDomainOwnershipIdentifiers(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -15553,11 +15681,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getDomainOwnershipIdentifier(this.client.getEndpoint(), resourceGroupName,
-                name, domainOwnershipIdentifierName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                name, domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -15598,11 +15726,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getDomainOwnershipIdentifier(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -15710,11 +15838,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateDomainOwnershipIdentifier(this.client.getEndpoint(),
-                resourceGroupName, name, domainOwnershipIdentifierName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), domainOwnershipIdentifier, accept, context))
+                resourceGroupName, name, domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion,
+                domainOwnershipIdentifier, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -15763,11 +15892,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateDomainOwnershipIdentifier(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            domainOwnershipIdentifier, accept, context);
+            domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion, domainOwnershipIdentifier,
+            accept, context);
     }
 
     /**
@@ -15869,11 +15999,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.deleteDomainOwnershipIdentifier(this.client.getEndpoint(),
-                resourceGroupName, name, domainOwnershipIdentifierName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.deleteDomainOwnershipIdentifier(this.client.getEndpoint(), resourceGroupName, name,
+                    domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -15913,11 +16044,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteDomainOwnershipIdentifier(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -16023,11 +16154,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateDomainOwnershipIdentifier(this.client.getEndpoint(),
-                resourceGroupName, name, domainOwnershipIdentifierName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), domainOwnershipIdentifier, accept, context))
+                resourceGroupName, name, domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion,
+                domainOwnershipIdentifier, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -16075,11 +16207,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateDomainOwnershipIdentifier(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            domainOwnershipIdentifier, accept, context);
+            domainOwnershipIdentifierName, this.client.getSubscriptionId(), apiVersion, domainOwnershipIdentifier,
+            accept, context);
     }
 
     /**
@@ -16176,10 +16309,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMSDeployStatus(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -16214,10 +16348,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMSDeployStatus(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -16311,10 +16446,11 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createMSDeployOperation(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), mSDeploy, accept, context))
+                this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -16356,10 +16492,11 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createMSDeployOperation(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), mSDeploy, accept, context);
+            this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context);
     }
 
     /**
@@ -16564,10 +16701,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMSDeployLog(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -16603,10 +16741,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMSDeployLog(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -16695,10 +16834,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getOneDeployStatus(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -16733,10 +16873,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getOneDeployStatus(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -16821,10 +16962,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOneDeployOperation(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -16859,10 +17001,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOneDeployOperation(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -16951,10 +17094,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listFunctions(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<FunctionEnvelopeInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -16993,11 +17137,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listFunctions(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -17108,10 +17253,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getFunctionsAdminToken(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -17146,10 +17292,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getFunctionsAdminToken(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -17240,10 +17387,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getFunction(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -17283,10 +17431,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getFunction(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -17390,11 +17539,11 @@ public final class WebAppsClientImpl
         } else {
             functionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.createFunction(this.client.getEndpoint(), resourceGroupName, name, functionName,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), functionEnvelope, accept, context))
+            .withContext(context -> service.createFunction(this.client.getEndpoint(), resourceGroupName, name,
+                functionName, this.client.getSubscriptionId(), apiVersion, functionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -17440,10 +17589,11 @@ public final class WebAppsClientImpl
         } else {
             functionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createFunction(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), functionEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, functionEnvelope, accept, context);
     }
 
     /**
@@ -17658,10 +17808,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteFunction(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -17701,10 +17852,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteFunction(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -17809,11 +17961,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateFunctionSecret(this.client.getEndpoint(), resourceGroupName,
-                name, functionName, keyName, this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept,
-                context))
+                name, functionName, keyName, this.client.getSubscriptionId(), apiVersion, key, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -17862,10 +18014,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateFunctionSecret(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            keyName, this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept, context);
+            keyName, this.client.getSubscriptionId(), apiVersion, key, accept, context);
     }
 
     /**
@@ -17974,10 +18127,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteFunctionSecret(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, keyName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, keyName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18021,10 +18175,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteFunctionSecret(this.client.getEndpoint(), resourceGroupName, name, functionName, keyName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -18124,10 +18279,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listFunctionKeys(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18166,10 +18322,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listFunctionKeys(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -18264,10 +18421,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listFunctionSecrets(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18306,10 +18464,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listFunctionSecrets(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -18399,10 +18558,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listHostKeys(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18437,10 +18597,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listHostKeys(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            apiVersion, accept, context);
     }
 
     /**
@@ -18524,10 +18685,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSyncStatus(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18562,10 +18724,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSyncStatus(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -18648,10 +18811,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.syncFunctions(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18686,10 +18850,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.syncFunctions(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -18787,10 +18952,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateHostSecret(this.client.getEndpoint(), resourceGroupName, name,
-                keyType, keyName, this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept, context))
+                keyType, keyName, this.client.getSubscriptionId(), apiVersion, key, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18839,10 +19005,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateHostSecret(this.client.getEndpoint(), resourceGroupName, name, keyType, keyName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept, context);
+            this.client.getSubscriptionId(), apiVersion, key, accept, context);
     }
 
     /**
@@ -18951,10 +19118,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteHostSecret(this.client.getEndpoint(), resourceGroupName, name,
-                keyType, keyName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                keyType, keyName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -18998,10 +19166,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteHostSecret(this.client.getEndpoint(), resourceGroupName, name, keyType, keyName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -19097,10 +19266,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listHostnameBindings(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<HostnameBindingInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -19138,11 +19308,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listHostnameBindings(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -19255,10 +19426,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getHostnameBinding(this.client.getEndpoint(), resourceGroupName, name,
-                hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                hostname, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -19297,10 +19469,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getHostnameBinding(this.client.getEndpoint(), resourceGroupName, name, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -19401,11 +19574,11 @@ public final class WebAppsClientImpl
         } else {
             hostnameBinding.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateHostnameBinding(this.client.getEndpoint(), resourceGroupName,
-                name, hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), hostnameBinding, accept,
-                context))
+                name, hostname, this.client.getSubscriptionId(), apiVersion, hostnameBinding, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -19451,10 +19624,11 @@ public final class WebAppsClientImpl
         } else {
             hostnameBinding.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateHostnameBinding(this.client.getEndpoint(), resourceGroupName, name, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), hostnameBinding, accept, context);
+            this.client.getSubscriptionId(), apiVersion, hostnameBinding, accept, context);
     }
 
     /**
@@ -19555,10 +19729,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteHostnameBinding(this.client.getEndpoint(), resourceGroupName, name,
-                hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                hostname, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -19597,10 +19772,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteHostnameBinding(this.client.getEndpoint(), resourceGroupName, name, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -19697,11 +19873,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getHybridConnection(this.client.getEndpoint(), resourceGroupName, name,
-                namespaceName, relayName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                namespaceName, relayName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -19744,10 +19920,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getHybridConnection(this.client.getEndpoint(), resourceGroupName, name, namespaceName, relayName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -19859,11 +20036,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateHybridConnection(this.client.getEndpoint(), resourceGroupName,
-                name, namespaceName, relayName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+                name, namespaceName, relayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -19914,11 +20092,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateHybridConnection(this.client.getEndpoint(), resourceGroupName, name, namespaceName,
-            relayName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            relayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -20028,11 +20206,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteHybridConnection(this.client.getEndpoint(), resourceGroupName, name,
-                namespaceName, relayName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                namespaceName, relayName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20076,10 +20254,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteHybridConnection(this.client.getEndpoint(), resourceGroupName, name, namespaceName,
-            relayName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            relayName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -20191,11 +20370,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateHybridConnection(this.client.getEndpoint(), resourceGroupName, name,
-                namespaceName, relayName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+                namespaceName, relayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20246,11 +20426,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateHybridConnection(this.client.getEndpoint(), resourceGroupName, name, namespaceName,
-            relayName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            relayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -20350,10 +20530,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listHybridConnections(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20388,10 +20569,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listHybridConnections(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -20479,10 +20661,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listRelayServiceConnections(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20518,10 +20701,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listRelayServiceConnections(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -20614,10 +20798,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getRelayServiceConnection(this.client.getEndpoint(), resourceGroupName,
-                name, entityName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, entityName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20657,10 +20842,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getRelayServiceConnection(this.client.getEndpoint(), resourceGroupName, name, entityName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -20765,11 +20951,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdateRelayServiceConnection(this.client.getEndpoint(),
-                resourceGroupName, name, entityName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+            .withContext(
+                context -> service.createOrUpdateRelayServiceConnection(this.client.getEndpoint(), resourceGroupName,
+                    name, entityName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20817,11 +21004,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateRelayServiceConnection(this.client.getEndpoint(), resourceGroupName, name,
-            entityName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            entityName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -20924,10 +21111,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteRelayServiceConnection(this.client.getEndpoint(), resourceGroupName,
-                name, entityName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, entityName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -20967,10 +21155,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteRelayServiceConnection(this.client.getEndpoint(), resourceGroupName, name, entityName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -21075,11 +21264,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateRelayServiceConnection(this.client.getEndpoint(), resourceGroupName,
-                name, entityName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope,
-                accept, context))
+                name, entityName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -21127,10 +21316,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateRelayServiceConnection(this.client.getEndpoint(), resourceGroupName, name, entityName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -21228,10 +21418,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceIdentifiers(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<WebSiteInstanceStatusInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -21268,11 +21459,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceIdentifiers(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -21385,10 +21577,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceInfo(this.client.getEndpoint(), resourceGroupName, name,
-                instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -21427,10 +21620,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceInfo(this.client.getEndpoint(), resourceGroupName, name, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -21525,10 +21719,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceMsDeployStatus(this.client.getEndpoint(), resourceGroupName,
-                name, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -21567,10 +21762,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceMsDeployStatus(this.client.getEndpoint(), resourceGroupName, name, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -21672,11 +21868,12 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createInstanceMSDeployOperation(this.client.getEndpoint(),
-                resourceGroupName, name, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                mSDeploy, accept, context))
+            .withContext(
+                context -> service.createInstanceMSDeployOperation(this.client.getEndpoint(), resourceGroupName, name,
+                    instanceId, this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -21722,10 +21919,11 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createInstanceMSDeployOperation(this.client.getEndpoint(), resourceGroupName, name, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), mSDeploy, accept, context);
+            this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context);
     }
 
     /**
@@ -21946,10 +22144,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceMSDeployLog(this.client.getEndpoint(), resourceGroupName, name,
-                instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -21989,10 +22188,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceMSDeployLog(this.client.getEndpoint(), resourceGroupName, name, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -22094,10 +22294,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceProcesses(this.client.getEndpoint(), resourceGroupName, name,
-                instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -22142,11 +22343,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceProcesses(this.client.getEndpoint(), resourceGroupName, name, instanceId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -22283,10 +22485,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceProcess(this.client.getEndpoint(), resourceGroupName, name,
-                processId, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -22331,10 +22534,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceProcess(this.client.getEndpoint(), resourceGroupName, name, processId, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -22447,10 +22651,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteInstanceProcess(this.client.getEndpoint(), resourceGroupName, name,
-                processId, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -22497,10 +22702,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteInstanceProcess(this.client.getEndpoint(), resourceGroupName, name, processId, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -22615,10 +22821,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceProcessDump(this.client.getEndpoint(), resourceGroupName, name,
-                processId, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -22663,10 +22870,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceProcessDump(this.client.getEndpoint(), resourceGroupName, name, processId, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -22779,11 +22987,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceProcessModules(this.client.getEndpoint(), resourceGroupName,
-                name, processId, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, processId, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessModuleInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -22831,11 +23039,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceProcessModules(this.client.getEndpoint(), resourceGroupName, name, processId, instanceId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -22979,11 +23188,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceProcessModule(this.client.getEndpoint(), resourceGroupName, name,
-                processId, baseAddress, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                processId, baseAddress, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -23032,10 +23241,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceProcessModule(this.client.getEndpoint(), resourceGroupName, name, processId,
-            baseAddress, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            baseAddress, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -23152,11 +23362,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceProcessThreads(this.client.getEndpoint(), resourceGroupName,
-                name, processId, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, processId, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessThreadInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -23204,11 +23414,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceProcessThreads(this.client.getEndpoint(), resourceGroupName, name, processId, instanceId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -23338,10 +23549,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.isCloneable(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -23377,10 +23589,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.isCloneable(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            apiVersion, accept, context);
     }
 
     /**
@@ -23465,10 +23678,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSiteBackups(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<BackupItemInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -23505,11 +23719,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSiteBackups(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -23616,10 +23831,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSyncFunctionTriggers(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -23654,10 +23870,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSyncFunctionTriggers(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -23741,10 +23958,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateMachineKey(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -23777,10 +23995,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateMachineKey(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -23873,11 +24092,12 @@ public final class WebAppsClientImpl
         } else {
             migrationOptions.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.migrateStorage(this.client.getEndpoint(), subscriptionName, resourceGroupName, name,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), migrationOptions, accept, context))
+                    this.client.getSubscriptionId(), apiVersion, migrationOptions, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -23925,10 +24145,11 @@ public final class WebAppsClientImpl
         } else {
             migrationOptions.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.migrateStorage(this.client.getEndpoint(), subscriptionName, resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), migrationOptions, accept, context);
+            this.client.getSubscriptionId(), apiVersion, migrationOptions, accept, context);
     }
 
     /**
@@ -24148,9 +24369,11 @@ public final class WebAppsClientImpl
         } else {
             migrationRequestEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.migrateMySql(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), migrationRequestEnvelope, accept, context))
+        return FluxUtil
+            .withContext(context -> service.migrateMySql(this.client.getEndpoint(), resourceGroupName, name,
+                this.client.getSubscriptionId(), apiVersion, migrationRequestEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -24192,10 +24415,11 @@ public final class WebAppsClientImpl
         } else {
             migrationRequestEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.migrateMySql(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), migrationRequestEnvelope, accept, context);
+            apiVersion, migrationRequestEnvelope, accept, context);
     }
 
     /**
@@ -24394,10 +24618,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMigrateMySqlStatus(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -24433,10 +24658,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMigrateMySqlStatus(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -24526,10 +24752,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSwiftVirtualNetworkConnection(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -24564,10 +24791,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSwiftVirtualNetworkConnection(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -24666,11 +24894,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateSwiftVirtualNetworkConnectionWithCheck(
-                this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), connectionEnvelope, accept, context))
+                this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(), apiVersion,
+                connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -24717,11 +24946,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSwiftVirtualNetworkConnectionWithCheck(this.client.getEndpoint(),
-            resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope,
-            accept, context);
+            resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -24827,10 +25056,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSwiftVirtualNetwork(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -24866,10 +25096,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSwiftVirtualNetwork(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -24968,11 +25199,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSwiftVirtualNetworkConnectionWithCheck(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -25018,10 +25250,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSwiftVirtualNetworkConnectionWithCheck(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -25133,10 +25366,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listNetworkFeatures(this.client.getEndpoint(), resourceGroupName, name,
-                view, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                view, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -25177,10 +25411,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listNetworkFeatures(this.client.getEndpoint(), resourceGroupName, name, view,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -25279,10 +25514,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTraceOperation(this.client.getEndpoint(), resourceGroupName, name,
-                operationId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                operationId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -25321,10 +25557,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTraceOperation(this.client.getEndpoint(), resourceGroupName, name, operationId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -25417,11 +25654,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startWebSiteNetworkTrace(this.client.getEndpoint(), resourceGroupName, name,
-                durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -25459,10 +25697,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startWebSiteNetworkTrace(this.client.getEndpoint(), resourceGroupName, name, durationInSeconds,
-            maxFrameLength, sasUrl, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -25563,11 +25802,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startWebSiteNetworkTraceOperation(this.client.getEndpoint(),
                 resourceGroupName, name, durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -25606,11 +25846,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startWebSiteNetworkTraceOperation(this.client.getEndpoint(), resourceGroupName, name,
-            durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            accept, context);
+            durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -25875,10 +26115,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopWebSiteNetworkTrace(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -25913,10 +26154,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopWebSiteNetworkTrace(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26004,10 +26246,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTraces(this.client.getEndpoint(), resourceGroupName, name,
-                operationId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                operationId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -26046,10 +26289,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTraces(this.client.getEndpoint(), resourceGroupName, name, operationId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26144,10 +26388,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTraceOperationV2(this.client.getEndpoint(), resourceGroupName,
-                name, operationId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, operationId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -26186,10 +26431,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTraceOperationV2(this.client.getEndpoint(), resourceGroupName, name, operationId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26283,10 +26529,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTracesV2(this.client.getEndpoint(), resourceGroupName, name,
-                operationId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                operationId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -26325,10 +26572,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTracesV2(this.client.getEndpoint(), resourceGroupName, name, operationId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26419,10 +26667,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.generateNewSitePublishingPassword(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -26457,10 +26706,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.generateNewSitePublishingPassword(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26550,10 +26800,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPerfMonCounters(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), filter, accept, context))
+                this.client.getSubscriptionId(), apiVersion, filter, accept, context))
             .<PagedResponse<PerfMonResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -26594,11 +26845,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listPerfMonCounters(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), filter, accept, context)
+                apiVersion, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -26738,10 +26990,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSitePhpErrorLogFlag(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -26777,10 +27030,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSitePhpErrorLogFlag(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26866,10 +27120,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPremierAddOns(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -26904,10 +27159,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listPremierAddOns(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -26999,10 +27255,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPremierAddOn(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                premierAddOnName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -27042,10 +27299,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPremierAddOn(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -27147,11 +27405,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.addPremierAddOn(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn, accept, context))
+            .withContext(context -> service.addPremierAddOn(this.client.getEndpoint(), resourceGroupName, name,
+                premierAddOnName, this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -27197,10 +27455,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.addPremierAddOn(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn, accept, context);
+            this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context);
     }
 
     /**
@@ -27302,10 +27561,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deletePremierAddOn(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                premierAddOnName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -27345,10 +27605,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePremierAddOn(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -27448,11 +27709,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updatePremierAddOn(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn, accept,
-                context))
+                premierAddOnName, this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -27498,10 +27759,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updatePremierAddOn(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn, accept, context);
+            this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context);
     }
 
     /**
@@ -27599,10 +27861,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateAccess(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -27639,10 +27902,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateAccess(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -27740,10 +28004,11 @@ public final class WebAppsClientImpl
         } else {
             access.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.putPrivateAccessVnet(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), access, accept, context))
+                this.client.getSubscriptionId(), apiVersion, access, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -27786,10 +28051,11 @@ public final class WebAppsClientImpl
         } else {
             access.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.putPrivateAccessVnet(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), access, accept, context);
+            this.client.getSubscriptionId(), apiVersion, access, accept, context);
     }
 
     /**
@@ -27883,10 +28149,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateEndpointConnectionList(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<RemotePrivateEndpointConnectionArmResourceInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -27924,11 +28191,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getPrivateEndpointConnectionList(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -28046,11 +28314,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateEndpointConnection(this.client.getEndpoint(), resourceGroupName,
-                name, privateEndpointConnectionName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                name, privateEndpointConnectionName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -28092,11 +28360,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateEndpointConnection(this.client.getEndpoint(), resourceGroupName, name,
-            privateEndpointConnectionName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            privateEndpointConnectionName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -28204,11 +28472,12 @@ public final class WebAppsClientImpl
         } else {
             privateEndpointWrapper.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.approveOrRejectPrivateEndpointConnection(this.client.getEndpoint(),
-                resourceGroupName, name, privateEndpointConnectionName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), privateEndpointWrapper, accept, context))
+                resourceGroupName, name, privateEndpointConnectionName, this.client.getSubscriptionId(), apiVersion,
+                privateEndpointWrapper, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -28257,11 +28526,12 @@ public final class WebAppsClientImpl
         } else {
             privateEndpointWrapper.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.approveOrRejectPrivateEndpointConnection(this.client.getEndpoint(), resourceGroupName, name,
-            privateEndpointConnectionName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            privateEndpointWrapper, accept, context);
+            privateEndpointConnectionName, this.client.getSubscriptionId(), apiVersion, privateEndpointWrapper, accept,
+            context);
     }
 
     /**
@@ -28502,11 +28772,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.deletePrivateEndpointConnection(this.client.getEndpoint(),
-                resourceGroupName, name, privateEndpointConnectionName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.deletePrivateEndpointConnection(this.client.getEndpoint(), resourceGroupName, name,
+                    privateEndpointConnectionName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -28546,11 +28817,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePrivateEndpointConnection(this.client.getEndpoint(), resourceGroupName, name,
-            privateEndpointConnectionName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            privateEndpointConnectionName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -28753,10 +29024,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateLinkResources(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -28792,10 +29064,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateLinkResources(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -28884,10 +29157,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProcesses(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -28927,11 +29201,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProcesses(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -29051,10 +29326,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getProcess(this.client.getEndpoint(), resourceGroupName, name, processId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -29094,10 +29370,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProcess(this.client.getEndpoint(), resourceGroupName, name, processId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -29197,10 +29474,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteProcess(this.client.getEndpoint(), resourceGroupName, name, processId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -29242,10 +29520,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteProcess(this.client.getEndpoint(), resourceGroupName, name, processId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -29347,10 +29626,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getProcessDump(this.client.getEndpoint(), resourceGroupName, name,
-                processId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -29390,10 +29670,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProcessDump(this.client.getEndpoint(), resourceGroupName, name, processId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -29492,10 +29773,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProcessModules(this.client.getEndpoint(), resourceGroupName, name,
-                processId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessModuleInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -29538,11 +29820,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProcessModules(this.client.getEndpoint(), resourceGroupName, name, processId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -29670,10 +29953,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getProcessModule(this.client.getEndpoint(), resourceGroupName, name,
-                processId, baseAddress, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, baseAddress, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -29717,10 +30001,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProcessModule(this.client.getEndpoint(), resourceGroupName, name, processId, baseAddress,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -29824,10 +30109,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProcessThreads(this.client.getEndpoint(), resourceGroupName, name,
-                processId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessThreadInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -29870,11 +30156,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProcessThreads(this.client.getEndpoint(), resourceGroupName, name, processId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -29994,10 +30281,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPublicCertificates(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<PublicCertificateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -30035,11 +30323,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listPublicCertificates(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -30153,10 +30442,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPublicCertificate(this.client.getEndpoint(), resourceGroupName, name,
-                publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -30196,10 +30486,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPublicCertificate(this.client.getEndpoint(), resourceGroupName, name, publicCertificateName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -30305,11 +30596,12 @@ public final class WebAppsClientImpl
         } else {
             publicCertificate.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdatePublicCertificate(this.client.getEndpoint(),
-                resourceGroupName, name, publicCertificateName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), publicCertificate, accept, context))
+                resourceGroupName, name, publicCertificateName, this.client.getSubscriptionId(), apiVersion,
+                publicCertificate, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -30358,11 +30650,11 @@ public final class WebAppsClientImpl
         } else {
             publicCertificate.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdatePublicCertificate(this.client.getEndpoint(), resourceGroupName, name,
-            publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), publicCertificate,
-            accept, context);
+            publicCertificateName, this.client.getSubscriptionId(), apiVersion, publicCertificate, accept, context);
     }
 
     /**
@@ -30467,10 +30759,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deletePublicCertificate(this.client.getEndpoint(), resourceGroupName, name,
-                publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -30510,10 +30803,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePublicCertificate(this.client.getEndpoint(), resourceGroupName, name,
-            publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -30612,11 +30906,12 @@ public final class WebAppsClientImpl
         } else {
             publishingProfileOptions.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/xml";
         return FluxUtil
-            .withContext(context -> service.listPublishingProfileXmlWithSecrets(this.client.getEndpoint(),
-                resourceGroupName, name, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                publishingProfileOptions, accept, context))
+            .withContext(
+                context -> service.listPublishingProfileXmlWithSecrets(this.client.getEndpoint(), resourceGroupName,
+                    name, this.client.getSubscriptionId(), apiVersion, publishingProfileOptions, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -30659,10 +30954,11 @@ public final class WebAppsClientImpl
         } else {
             publishingProfileOptions.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/xml";
         context = this.client.mergeContext(context);
         return service.listPublishingProfileXmlWithSecrets(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), publishingProfileOptions, accept, context);
+            this.client.getSubscriptionId(), apiVersion, publishingProfileOptions, accept, context);
     }
 
     /**
@@ -30760,10 +31056,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.resetProductionSlotConfig(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -30800,10 +31097,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.resetProductionSlotConfig(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -30898,10 +31196,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restart(this.client.getEndpoint(), resourceGroupName, name, softRestart,
-                synchronous, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                synchronous, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -30940,10 +31239,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restart(this.client.getEndpoint(), resourceGroupName, name, softRestart, synchronous,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -31043,10 +31343,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restoreFromBackupBlob(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -31087,10 +31388,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreFromBackupBlob(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -31290,10 +31592,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restoreFromDeletedApp(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context))
+                this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -31334,10 +31637,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreFromDeletedApp(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context);
+            this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context);
     }
 
     /**
@@ -31539,10 +31843,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restoreSnapshot(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context))
+                this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -31584,10 +31889,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreSnapshot(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context);
+            this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context);
     }
 
     /**
@@ -31788,10 +32094,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSiteContainers(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteContainerInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -31826,11 +32133,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSiteContainers(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -31934,10 +32242,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteContainer(this.client.getEndpoint(), resourceGroupName, name,
-                containerName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                containerName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -31975,10 +32284,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSiteContainer(this.client.getEndpoint(), resourceGroupName, name, containerName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -32070,11 +32380,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateSiteContainer(this.client.getEndpoint(), resourceGroupName,
-                name, containerName, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept,
-                context))
+                name, containerName, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -32117,10 +32427,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSiteContainer(this.client.getEndpoint(), resourceGroupName, name, containerName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -32213,10 +32524,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSiteContainer(this.client.getEndpoint(), resourceGroupName, name,
-                containerName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                containerName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -32253,10 +32565,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSiteContainer(this.client.getEndpoint(), resourceGroupName, name, containerName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -32341,10 +32654,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSiteExtensions(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteExtensionInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -32383,11 +32697,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSiteExtensions(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -32506,10 +32821,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteExtension(this.client.getEndpoint(), resourceGroupName, name,
-                siteExtensionId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                siteExtensionId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -32550,10 +32866,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSiteExtension(this.client.getEndpoint(), resourceGroupName, name, siteExtensionId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -32653,10 +32970,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.installSiteExtension(this.client.getEndpoint(), resourceGroupName, name,
-                siteExtensionId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                siteExtensionId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -32697,10 +33015,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.installSiteExtension(this.client.getEndpoint(), resourceGroupName, name, siteExtensionId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -32912,10 +33231,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSiteExtension(this.client.getEndpoint(), resourceGroupName, name,
-                siteExtensionId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                siteExtensionId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -32956,10 +33276,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSiteExtension(this.client.getEndpoint(), resourceGroupName, name, siteExtensionId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -33050,10 +33371,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSlots(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -33090,11 +33412,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listSlots(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+            .listSlots(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(), apiVersion,
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -33206,10 +33529,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -33250,10 +33574,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -33358,10 +33683,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -33409,10 +33735,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context);
     }
 
     /**
@@ -33641,11 +33968,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                deleteMetrics, deleteEmptyServerFarm, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                deleteMetrics, deleteEmptyServerFarm, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -33688,10 +34015,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSlot(this.client.getEndpoint(), resourceGroupName, name, slot, deleteMetrics,
-            deleteEmptyServerFarm, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            deleteEmptyServerFarm, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -33804,10 +34132,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -33855,10 +34184,11 @@ public final class WebAppsClientImpl
         } else {
             siteEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteEnvelope, accept, context);
     }
 
     /**
@@ -33964,10 +34294,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.analyzeCustomHostnameSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, hostname, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -34007,10 +34338,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.analyzeCustomHostnameSlot(this.client.getEndpoint(), resourceGroupName, name, slot, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -34115,11 +34447,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.applySlotConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context))
+            .withContext(context -> service.applySlotConfigurationSlot(this.client.getEndpoint(), resourceGroupName,
+                name, slot, this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -34164,10 +34496,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.applySlotConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context);
+            this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context);
     }
 
     /**
@@ -34273,10 +34606,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.backupSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -34322,10 +34656,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.backupSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -34427,10 +34762,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listBackupsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<BackupItemInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -34472,11 +34808,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listBackupsSlot(this.client.getEndpoint(), resourceGroupName, name, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -34602,10 +34939,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getBackupStatusSlot(this.client.getEndpoint(), resourceGroupName, name,
-                backupId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                backupId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -34649,10 +34987,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getBackupStatusSlot(this.client.getEndpoint(), resourceGroupName, name, backupId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -34759,10 +35098,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteBackupSlot(this.client.getEndpoint(), resourceGroupName, name,
-                backupId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                backupId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -34807,10 +35147,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteBackupSlot(this.client.getEndpoint(), resourceGroupName, name, backupId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -34926,11 +35267,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listBackupStatusSecretsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, backupId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept,
-                context))
+                name, backupId, slot, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -34983,10 +35324,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listBackupStatusSecretsSlot(this.client.getEndpoint(), resourceGroupName, name, backupId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -35113,10 +35455,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restoreSlot(this.client.getEndpoint(), resourceGroupName, name, backupId,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -35166,10 +35509,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreSlot(this.client.getEndpoint(), resourceGroupName, name, backupId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -35394,11 +35738,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listBasicPublishingCredentialsPoliciesSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<CsmPublishingCredentialsPoliciesEntityInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -35442,11 +35786,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listBasicPublishingCredentialsPoliciesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -35573,10 +35918,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getFtpAllowedSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -35616,10 +35962,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getFtpAllowedSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -35724,11 +36071,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateFtpAllowedSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity,
-                accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -35776,11 +36123,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateFtpAllowedSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity, accept,
-            context);
+            this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context);
     }
 
     /**
@@ -35883,10 +36230,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getScmAllowedSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -35926,10 +36274,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getScmAllowedSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -36034,11 +36383,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateScmAllowedSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity,
-                accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -36086,11 +36435,11 @@ public final class WebAppsClientImpl
         } else {
             csmPublishingAccessPoliciesEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateScmAllowedSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), csmPublishingAccessPoliciesEntity, accept,
-            context);
+            this.client.getSubscriptionId(), apiVersion, csmPublishingAccessPoliciesEntity, accept, context);
     }
 
     /**
@@ -36194,10 +36543,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listConfigurationsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteConfigResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -36240,11 +36590,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listConfigurationsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -36374,10 +36725,11 @@ public final class WebAppsClientImpl
         } else {
             appSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateApplicationSettingsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), appSettings, accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, appSettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -36423,10 +36775,11 @@ public final class WebAppsClientImpl
         } else {
             appSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateApplicationSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), appSettings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, appSettings, accept, context);
     }
 
     /**
@@ -36531,10 +36884,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listApplicationSettingsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -36574,10 +36928,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listApplicationSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -36683,10 +37038,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateAuthSettingsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettings, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, siteAuthSettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -36733,10 +37089,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateAuthSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteAuthSettings, accept, context);
     }
 
     /**
@@ -36841,10 +37198,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAuthSettingsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -36885,10 +37243,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAuthSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -36987,11 +37346,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getAuthSettingsV2WithoutSecretsSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getAuthSettingsV2WithoutSecretsSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37030,10 +37389,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAuthSettingsV2WithoutSecretsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -37135,11 +37495,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettingsV2.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateAuthSettingsV2Slot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettingsV2, accept, context))
+            .withContext(context -> service.updateAuthSettingsV2Slot(this.client.getEndpoint(), resourceGroupName, name,
+                slot, this.client.getSubscriptionId(), apiVersion, siteAuthSettingsV2, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37186,10 +37546,11 @@ public final class WebAppsClientImpl
         } else {
             siteAuthSettingsV2.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateAuthSettingsV2Slot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteAuthSettingsV2, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteAuthSettingsV2, accept, context);
     }
 
     /**
@@ -37294,10 +37655,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAuthSettingsV2Slot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37338,10 +37700,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAuthSettingsV2Slot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -37451,11 +37814,11 @@ public final class WebAppsClientImpl
         } else {
             azureStorageAccounts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateAzureStorageAccountsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), azureStorageAccounts, accept,
-                context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, azureStorageAccounts, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37504,10 +37867,11 @@ public final class WebAppsClientImpl
         } else {
             azureStorageAccounts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateAzureStorageAccountsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), azureStorageAccounts, accept, context);
+            this.client.getSubscriptionId(), apiVersion, azureStorageAccounts, accept, context);
     }
 
     /**
@@ -37615,10 +37979,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAzureStorageAccountsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37659,10 +38024,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listAzureStorageAccountsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -37769,10 +38135,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateBackupConfigurationSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37819,10 +38186,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateBackupConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -37926,10 +38294,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteBackupConfigurationSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -37969,10 +38338,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteBackupConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -38070,10 +38440,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getBackupConfigurationSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -38114,10 +38485,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getBackupConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -38215,11 +38587,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getAppSettingsKeyVaultReferencesSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getAppSettingsKeyVaultReferencesSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ApiKVReferenceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -38260,11 +38632,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getAppSettingsKeyVaultReferencesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -38389,11 +38762,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getAppSettingKeyVaultReferenceSlot(this.client.getEndpoint(),
-                resourceGroupName, name, appSettingKey, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.getAppSettingKeyVaultReferenceSlot(this.client.getEndpoint(), resourceGroupName,
+                    name, appSettingKey, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -38437,10 +38811,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAppSettingKeyVaultReferenceSlot(this.client.getEndpoint(), resourceGroupName, name,
-            appSettingKey, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            appSettingKey, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -38541,11 +38916,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteConnectionStringKeyVaultReferencesSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ApiKVReferenceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -38586,11 +38961,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getSiteConnectionStringKeyVaultReferencesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -38718,11 +39094,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteConnectionStringKeyVaultReferenceSlot(this.client.getEndpoint(),
-                resourceGroupName, name, connectionStringKey, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, connectionStringKey, slot, this.client.getSubscriptionId(), apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -38767,10 +39144,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSiteConnectionStringKeyVaultReferenceSlot(this.client.getEndpoint(), resourceGroupName, name,
-            connectionStringKey, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            connectionStringKey, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -38879,11 +39257,11 @@ public final class WebAppsClientImpl
         } else {
             connectionStrings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateConnectionStringsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), connectionStrings, accept, context))
+            .withContext(context -> service.updateConnectionStringsSlot(this.client.getEndpoint(), resourceGroupName,
+                name, slot, this.client.getSubscriptionId(), apiVersion, connectionStrings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -38931,10 +39309,11 @@ public final class WebAppsClientImpl
         } else {
             connectionStrings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateConnectionStringsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionStrings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionStrings, accept, context);
     }
 
     /**
@@ -39039,10 +39418,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listConnectionStringsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -39082,10 +39462,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listConnectionStringsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -39186,11 +39567,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getDiagnosticLogsConfigurationSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getDiagnosticLogsConfigurationSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -39231,10 +39612,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getDiagnosticLogsConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -39341,11 +39723,11 @@ public final class WebAppsClientImpl
         } else {
             siteLogsConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateDiagnosticLogsConfigSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), siteLogsConfig, accept,
-                context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, siteLogsConfig, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -39393,10 +39775,11 @@ public final class WebAppsClientImpl
         } else {
             siteLogsConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateDiagnosticLogsConfigSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteLogsConfig, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteLogsConfig, accept, context);
     }
 
     /**
@@ -39510,10 +39893,11 @@ public final class WebAppsClientImpl
         } else {
             metadata.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateMetadataSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), metadata, accept, context))
+                this.client.getSubscriptionId(), apiVersion, metadata, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -39559,10 +39943,11 @@ public final class WebAppsClientImpl
         } else {
             metadata.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateMetadataSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), metadata, accept, context);
+            this.client.getSubscriptionId(), apiVersion, metadata, accept, context);
     }
 
     /**
@@ -39665,10 +40050,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listMetadataSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -39708,10 +40094,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listMetadataSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -39810,10 +40197,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPublishingCredentialsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -39854,10 +40242,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listPublishingCredentialsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -40071,11 +40460,11 @@ public final class WebAppsClientImpl
         } else {
             pushSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateSitePushSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), pushSettings, accept, context))
+            .withContext(context -> service.updateSitePushSettingsSlot(this.client.getEndpoint(), resourceGroupName,
+                name, slot, this.client.getSubscriptionId(), apiVersion, pushSettings, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -40120,10 +40509,11 @@ public final class WebAppsClientImpl
         } else {
             pushSettings.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSitePushSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), pushSettings, accept, context);
+            this.client.getSubscriptionId(), apiVersion, pushSettings, accept, context);
     }
 
     /**
@@ -40224,10 +40614,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSitePushSettingsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -40266,10 +40657,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSitePushSettingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -40366,10 +40758,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -40411,10 +40804,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -40524,11 +40918,12 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.createOrUpdateConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name,
-                    slot, this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context))
+                    slot, this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -40574,10 +40969,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context);
     }
 
     /**
@@ -40688,10 +41084,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -40737,10 +41134,11 @@ public final class WebAppsClientImpl
         } else {
             siteConfig.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteConfig, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteConfig, accept, context);
     }
 
     /**
@@ -40846,11 +41244,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listConfigurationSnapshotInfoSlot(this.client.getEndpoint(), resourceGroupName, name,
-                    slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listConfigurationSnapshotInfoSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteConfigurationSnapshotInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -40895,11 +41293,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listConfigurationSnapshotInfoSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -41040,10 +41439,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getConfigurationSnapshotSlot(this.client.getEndpoint(), resourceGroupName,
-                name, snapshotId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, snapshotId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -41087,10 +41487,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getConfigurationSnapshotSlot(this.client.getEndpoint(), resourceGroupName, name, snapshotId,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -41199,11 +41600,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.recoverSiteConfigurationSnapshotSlot(this.client.getEndpoint(),
-                resourceGroupName, name, snapshotId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+            .withContext(
+                context -> service.recoverSiteConfigurationSnapshotSlot(this.client.getEndpoint(), resourceGroupName,
+                    name, snapshotId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -41247,10 +41649,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.recoverSiteConfigurationSnapshotSlot(this.client.getEndpoint(), resourceGroupName, name,
-            snapshotId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            snapshotId, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -41352,10 +41755,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/octet-stream";
         return FluxUtil
             .withContext(context -> service.getWebSiteContainerLogsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -41394,10 +41798,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/octet-stream";
         context = this.client.mergeContext(context);
         return service.getWebSiteContainerLogsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -41491,10 +41896,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/zip";
         return FluxUtil
             .withContext(context -> service.getContainerLogsZipSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -41533,10 +41939,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/zip";
         context = this.client.mergeContext(context);
         return service.getContainerLogsZipSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -41632,10 +42039,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listContinuousWebJobsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ContinuousWebJobInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -41678,11 +42086,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listContinuousWebJobsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -41813,10 +42222,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -41861,10 +42271,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -41974,10 +42385,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -42021,10 +42433,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -42130,10 +42543,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -42178,10 +42592,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -42290,10 +42705,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -42338,10 +42754,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopContinuousWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -42444,11 +42861,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listSlotSiteDeploymentStatusesSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listSlotSiteDeploymentStatusesSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<CsmDeploymentStatus>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -42489,11 +42906,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSlotSiteDeploymentStatusesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -42614,11 +43032,12 @@ public final class WebAppsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter deploymentStatusId is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSlotSiteDeploymentStatusSlot(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, name, slot, deploymentStatusId,
-                this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, name, slot, deploymentStatusId, apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -42662,10 +43081,11 @@ public final class WebAppsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter deploymentStatusId is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSlotSiteDeploymentStatusSlot(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, slot, deploymentStatusId, this.client.getApiVersion(), accept, context);
+            resourceGroupName, name, slot, deploymentStatusId, apiVersion, accept, context);
     }
 
     /**
@@ -42878,10 +43298,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<DeploymentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -42923,11 +43344,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listDeploymentsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -43054,10 +43476,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getDeploymentSlot(this.client.getEndpoint(), resourceGroupName, name, id,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -43102,10 +43525,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getDeploymentSlot(this.client.getEndpoint(), resourceGroupName, name, id, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -43217,10 +43641,11 @@ public final class WebAppsClientImpl
         } else {
             deployment.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createDeploymentSlot(this.client.getEndpoint(), resourceGroupName, name, id,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), deployment, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, deployment, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -43271,10 +43696,11 @@ public final class WebAppsClientImpl
         } else {
             deployment.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createDeploymentSlot(this.client.getEndpoint(), resourceGroupName, name, id, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), deployment, accept, context);
+            this.client.getSubscriptionId(), apiVersion, deployment, accept, context);
     }
 
     /**
@@ -43384,10 +43810,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteDeploymentSlot(this.client.getEndpoint(), resourceGroupName, name, id,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -43431,10 +43858,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteDeploymentSlot(this.client.getEndpoint(), resourceGroupName, name, id, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -43540,10 +43968,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentLogSlot(this.client.getEndpoint(), resourceGroupName, name,
-                id, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                id, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -43589,10 +44018,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listDeploymentLogSlot(this.client.getEndpoint(), resourceGroupName, name, id, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -43705,10 +44135,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.discoverBackupSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -43756,10 +44187,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.discoverBackupSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -43868,11 +44300,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listDomainOwnershipIdentifiersSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listDomainOwnershipIdentifiersSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<IdentifierInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -43914,11 +44346,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listDomainOwnershipIdentifiersSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -44049,11 +44482,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getDomainOwnershipIdentifierSlot(this.client.getEndpoint(),
-                resourceGroupName, name, domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.getDomainOwnershipIdentifierSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -44099,11 +44533,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getDomainOwnershipIdentifierSlot(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -44222,11 +44656,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateDomainOwnershipIdentifierSlot(this.client.getEndpoint(),
                 resourceGroupName, name, domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), domainOwnershipIdentifier, accept, context))
+                apiVersion, domainOwnershipIdentifier, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -44280,11 +44715,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateDomainOwnershipIdentifierSlot(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            domainOwnershipIdentifier, accept, context);
+            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), apiVersion, domainOwnershipIdentifier,
+            accept, context);
     }
 
     /**
@@ -44399,11 +44835,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteDomainOwnershipIdentifierSlot(this.client.getEndpoint(),
                 resourceGroupName, name, domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -44448,11 +44885,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteDomainOwnershipIdentifierSlot(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -44570,11 +45007,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateDomainOwnershipIdentifierSlot(this.client.getEndpoint(),
                 resourceGroupName, name, domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), domainOwnershipIdentifier, accept, context))
+                apiVersion, domainOwnershipIdentifier, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -44628,11 +45066,12 @@ public final class WebAppsClientImpl
         } else {
             domainOwnershipIdentifier.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateDomainOwnershipIdentifierSlot(this.client.getEndpoint(), resourceGroupName, name,
-            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            domainOwnershipIdentifier, accept, context);
+            domainOwnershipIdentifierName, slot, this.client.getSubscriptionId(), apiVersion, domainOwnershipIdentifier,
+            accept, context);
     }
 
     /**
@@ -44741,10 +45180,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMSDeployStatusSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -44783,10 +45223,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMSDeployStatusSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -44887,10 +45328,11 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createMSDeployOperationSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), mSDeploy, accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -44936,10 +45378,11 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createMSDeployOperationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), mSDeploy, accept, context);
+            this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context);
     }
 
     /**
@@ -45159,10 +45602,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMSDeployLogSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -45202,10 +45646,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMSDeployLogSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -45304,10 +45749,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceFunctionsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<FunctionEnvelopeInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -45350,11 +45796,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceFunctionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -45477,10 +45924,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getFunctionsAdminTokenSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -45519,10 +45967,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getFunctionsAdminTokenSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -45621,10 +46070,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -45668,10 +46118,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName, name, functionName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -45785,11 +46236,12 @@ public final class WebAppsClientImpl
         } else {
             functionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName,
-                name, functionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                functionEnvelope, accept, context))
+            .withContext(
+                context -> service.createInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    functionName, slot, this.client.getSubscriptionId(), apiVersion, functionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -45839,10 +46291,11 @@ public final class WebAppsClientImpl
         } else {
             functionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), functionEnvelope, accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, functionEnvelope, accept, context);
     }
 
     /**
@@ -46076,11 +46529,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.deleteInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                    functionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.deleteInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName,
+                name, functionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -46124,10 +46577,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteInstanceFunctionSlot(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -46242,11 +46696,12 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdateFunctionSecretSlot(this.client.getEndpoint(),
-                resourceGroupName, name, functionName, keyName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), key, accept, context))
+            .withContext(
+                context -> service.createOrUpdateFunctionSecretSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    functionName, keyName, slot, this.client.getSubscriptionId(), apiVersion, key, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -46299,11 +46754,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateFunctionSecretSlot(this.client.getEndpoint(), resourceGroupName, name,
-            functionName, keyName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept,
-            context);
+            functionName, keyName, slot, this.client.getSubscriptionId(), apiVersion, key, accept, context);
     }
 
     /**
@@ -46419,11 +46874,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteFunctionSecretSlot(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, keyName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                functionName, keyName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -46471,10 +46926,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteFunctionSecretSlot(this.client.getEndpoint(), resourceGroupName, name, functionName,
-            keyName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            keyName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -46583,10 +47039,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listFunctionKeysSlot(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -46629,10 +47086,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listFunctionKeysSlot(this.client.getEndpoint(), resourceGroupName, name, functionName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -46735,10 +47193,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listFunctionSecretsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                functionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                functionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -46781,10 +47240,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listFunctionSecretsSlot(this.client.getEndpoint(), resourceGroupName, name, functionName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -46884,10 +47344,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listHostKeysSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -46926,10 +47387,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listHostKeysSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -47023,10 +47485,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSyncStatusSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -47065,10 +47528,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSyncStatusSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -47159,10 +47623,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.syncFunctionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -47201,10 +47666,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.syncFunctionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -47310,11 +47776,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateHostSecretSlot(this.client.getEndpoint(), resourceGroupName,
-                name, keyType, keyName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept,
-                context))
+                name, keyType, keyName, slot, this.client.getSubscriptionId(), apiVersion, key, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -47367,10 +47833,11 @@ public final class WebAppsClientImpl
         } else {
             key.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateHostSecretSlot(this.client.getEndpoint(), resourceGroupName, name, keyType,
-            keyName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), key, accept, context);
+            keyName, slot, this.client.getSubscriptionId(), apiVersion, key, accept, context);
     }
 
     /**
@@ -47486,10 +47953,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteHostSecretSlot(this.client.getEndpoint(), resourceGroupName, name,
-                keyType, keyName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                keyType, keyName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -47537,10 +48005,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteHostSecretSlot(this.client.getEndpoint(), resourceGroupName, name, keyType, keyName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -47646,10 +48115,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listHostnameBindingsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<HostnameBindingInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -47692,11 +48162,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listHostnameBindingsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -47824,10 +48295,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getHostnameBindingSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, hostname, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -47871,10 +48343,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getHostnameBindingSlot(this.client.getEndpoint(), resourceGroupName, name, slot, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -47988,11 +48461,12 @@ public final class WebAppsClientImpl
         } else {
             hostnameBinding.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdateHostnameBindingSlot(this.client.getEndpoint(),
-                resourceGroupName, name, hostname, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                hostnameBinding, accept, context))
+            .withContext(
+                context -> service.createOrUpdateHostnameBindingSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    hostname, slot, this.client.getSubscriptionId(), apiVersion, hostnameBinding, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -48044,10 +48518,11 @@ public final class WebAppsClientImpl
         } else {
             hostnameBinding.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateHostnameBindingSlot(this.client.getEndpoint(), resourceGroupName, name, hostname,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), hostnameBinding, accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, hostnameBinding, accept, context);
     }
 
     /**
@@ -48159,10 +48634,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteHostnameBindingSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, hostname, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, hostname, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -48206,10 +48682,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteHostnameBindingSlot(this.client.getEndpoint(), resourceGroupName, name, slot, hostname,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -48317,11 +48794,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                namespaceName, relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                namespaceName, relayName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -48368,10 +48845,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, namespaceName,
-            relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            relayName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -48491,11 +48969,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateHybridConnectionSlot(this.client.getEndpoint(),
-                resourceGroupName, name, namespaceName, relayName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), connectionEnvelope, accept, context))
+                resourceGroupName, name, namespaceName, relayName, slot, this.client.getSubscriptionId(), apiVersion,
+                connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -48550,11 +49029,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-            namespaceName, relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            connectionEnvelope, accept, context);
+            namespaceName, relayName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+            context);
     }
 
     /**
@@ -48671,11 +49151,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName,
-                name, namespaceName, relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                name, namespaceName, relayName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -48723,10 +49203,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, namespaceName,
-            relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            relayName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -48846,11 +49327,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName,
-                name, namespaceName, relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+                name, namespaceName, relayName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -48905,11 +49387,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateHybridConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, namespaceName,
-            relayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            relayName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -49017,10 +49499,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listHybridConnectionsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -49059,10 +49542,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listHybridConnectionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -49159,11 +49643,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listRelayServiceConnectionsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                    slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listRelayServiceConnectionsSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -49204,10 +49688,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listRelayServiceConnectionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -49312,10 +49797,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName,
-                name, entityName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, entityName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -49360,10 +49846,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, entityName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -49481,10 +49968,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateRelayServiceConnectionSlot(this.client.getEndpoint(),
-                resourceGroupName, name, entityName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
+                resourceGroupName, name, entityName, slot, this.client.getSubscriptionId(), apiVersion,
                 connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -49538,11 +50026,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-            entityName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            entityName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -49657,11 +50145,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.deleteRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                    entityName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                    entityName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -49706,10 +50195,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, entityName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -49828,11 +50318,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateRelayServiceConnectionSlot(this.client.getEndpoint(),
-                resourceGroupName, name, entityName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+            .withContext(
+                context -> service.updateRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    entityName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -49885,10 +50376,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateRelayServiceConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, entityName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -49996,10 +50488,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceIdentifiersSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<WebSiteInstanceStatusInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -50040,11 +50533,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceIdentifiersSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -50167,10 +50661,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceInfoSlot(this.client.getEndpoint(), resourceGroupName, name,
-                instanceId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                instanceId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -50213,10 +50708,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceInfoSlot(this.client.getEndpoint(), resourceGroupName, name, instanceId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -50319,10 +50815,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceMsDeployStatusSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -50365,10 +50862,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceMsDeployStatusSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            instanceId, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -50480,11 +50978,12 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createInstanceMSDeployOperationSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                mSDeploy, accept, context))
+            .withContext(
+                context -> service.createInstanceMSDeployOperationSlot(this.client.getEndpoint(), resourceGroupName,
+                    name, slot, instanceId, this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -50534,10 +51033,11 @@ public final class WebAppsClientImpl
         } else {
             mSDeploy.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createInstanceMSDeployOperationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), mSDeploy, accept, context);
+            instanceId, this.client.getSubscriptionId(), apiVersion, mSDeploy, accept, context);
     }
 
     /**
@@ -50774,10 +51274,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceMSDeployLogSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -50821,10 +51322,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceMSDeployLogSlot(this.client.getEndpoint(), resourceGroupName, name, slot, instanceId,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -50936,10 +51438,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceProcessesSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -50989,11 +51492,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceProcessesSlot(this.client.getEndpoint(), resourceGroupName, name, slot, instanceId,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -51145,11 +51649,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getInstanceProcessSlot(this.client.getEndpoint(), resourceGroupName, name, processId,
-                    slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getInstanceProcessSlot(this.client.getEndpoint(), resourceGroupName, name,
+                processId, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -51199,10 +51703,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceProcessSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-            instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            instanceId, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -51328,11 +51833,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteInstanceProcessSlot(this.client.getEndpoint(), resourceGroupName,
-                name, processId, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, processId, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -51384,10 +51889,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteInstanceProcessSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-            instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            instanceId, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -51515,11 +52021,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceProcessDumpSlot(this.client.getEndpoint(), resourceGroupName,
-                name, processId, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, processId, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -51569,10 +52075,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceProcessDumpSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-            instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            instanceId, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -51697,11 +52204,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceProcessModulesSlot(this.client.getEndpoint(), resourceGroupName,
-                name, processId, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, processId, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessModuleInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -51754,11 +52261,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceProcessModulesSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-                instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                instanceId, this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -51916,11 +52424,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getInstanceProcessModuleSlot(this.client.getEndpoint(), resourceGroupName,
-                name, processId, baseAddress, slot, instanceId, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                name, processId, baseAddress, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -51975,11 +52484,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceProcessModuleSlot(this.client.getEndpoint(), resourceGroupName, name, processId,
-            baseAddress, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            baseAddress, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -52107,11 +52616,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listInstanceProcessThreadsSlot(this.client.getEndpoint(), resourceGroupName,
-                name, processId, slot, instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, processId, slot, instanceId, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessThreadInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -52164,11 +52673,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceProcessThreadsSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-                instanceId, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                instanceId, this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -52312,10 +52822,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.isCloneableSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -52355,10 +52866,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.isCloneableSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -52453,10 +52965,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSiteBackupsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<BackupItemInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -52498,11 +53011,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSiteBackupsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -52623,10 +53137,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSyncFunctionTriggersSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -52665,10 +53180,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listSyncFunctionTriggersSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -52764,10 +53280,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMigrateMySqlStatusSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -52807,10 +53324,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMigrateMySqlStatusSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -52909,11 +53427,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getSwiftVirtualNetworkConnectionSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getSwiftVirtualNetworkConnectionSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -52953,10 +53471,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSwiftVirtualNetworkConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -53068,11 +53587,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(
-                this.client.getEndpoint(), resourceGroupName, name, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), connectionEnvelope, accept, context))
+                this.client.getEndpoint(), resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion,
+                connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -53124,11 +53644,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot(this.client.getEndpoint(),
-            resourceGroupName, name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            connectionEnvelope, accept, context);
+            resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+            context);
     }
 
     /**
@@ -53247,10 +53768,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSwiftVirtualNetworkSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -53291,10 +53813,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSwiftVirtualNetworkSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -53405,11 +53928,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSwiftVirtualNetworkConnectionWithCheckSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -53461,11 +53985,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSwiftVirtualNetworkConnectionWithCheckSlot(this.client.getEndpoint(), resourceGroupName,
-            name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            name, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -53589,10 +54113,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listNetworkFeaturesSlot(this.client.getEndpoint(), resourceGroupName, name,
-                view, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                view, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -53638,10 +54163,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listNetworkFeaturesSlot(this.client.getEndpoint(), resourceGroupName, name, view, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -53753,10 +54279,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTraceOperationSlot(this.client.getEndpoint(), resourceGroupName,
-                name, operationId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, operationId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -53800,10 +54327,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTraceOperationSlot(this.client.getEndpoint(), resourceGroupName, name, operationId,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -53909,11 +54437,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startWebSiteNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName,
-                name, durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                name, durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -53955,11 +54484,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startWebSiteNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName, name,
-            durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept,
+            context);
     }
 
     /**
@@ -54068,11 +54598,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startWebSiteNetworkTraceOperationSlot(this.client.getEndpoint(),
                 resourceGroupName, name, durationInSeconds, slot, maxFrameLength, sasUrl,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -54115,11 +54646,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startWebSiteNetworkTraceOperationSlot(this.client.getEndpoint(), resourceGroupName, name,
-            durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept,
+            context);
     }
 
     /**
@@ -54401,10 +54933,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopWebSiteNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -54443,10 +54976,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopWebSiteNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -54544,10 +55078,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTracesSlot(this.client.getEndpoint(), resourceGroupName, name,
-                operationId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                operationId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -54591,10 +55126,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTracesSlot(this.client.getEndpoint(), resourceGroupName, name, operationId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -54701,10 +55237,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTraceOperationSlotV2(this.client.getEndpoint(), resourceGroupName,
-                name, operationId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, operationId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -54748,10 +55285,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTraceOperationSlotV2(this.client.getEndpoint(), resourceGroupName, name, operationId,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -54860,10 +55398,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getNetworkTracesSlotV2(this.client.getEndpoint(), resourceGroupName, name,
-                operationId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                operationId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -54907,10 +55446,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getNetworkTracesSlotV2(this.client.getEndpoint(), resourceGroupName, name, operationId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -55013,11 +55553,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.generateNewSitePublishingPasswordSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.generateNewSitePublishingPasswordSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -55057,10 +55597,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.generateNewSitePublishingPasswordSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -55160,10 +55701,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPerfMonCountersSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), filter, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, filter, accept, context))
             .<PagedResponse<PerfMonResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -55208,11 +55750,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listPerfMonCountersSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), filter, accept, context)
+                this.client.getSubscriptionId(), apiVersion, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -55364,10 +55907,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSitePhpErrorLogFlagSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -55407,10 +55951,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSitePhpErrorLogFlagSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -55506,10 +56051,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPremierAddOnsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -55549,10 +56095,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listPremierAddOnsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -55655,10 +56202,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                premierAddOnName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -55703,10 +56251,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -55821,11 +56370,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.addPremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn,
-                accept, context))
+                premierAddOnName, slot, this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -55876,10 +56425,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.addPremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn, accept, context);
+            this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context);
     }
 
     /**
@@ -55992,10 +56542,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deletePremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                premierAddOnName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -56040,10 +56591,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -56156,11 +56708,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updatePremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name,
-                premierAddOnName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn,
-                accept, context))
+                premierAddOnName, slot, this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -56211,10 +56763,11 @@ public final class WebAppsClientImpl
         } else {
             premierAddOn.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updatePremierAddOnSlot(this.client.getEndpoint(), resourceGroupName, name, premierAddOnName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), premierAddOn, accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, premierAddOn, accept, context);
     }
 
     /**
@@ -56323,10 +56876,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateAccessSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -56367,10 +56921,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateAccessSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -56475,10 +57030,11 @@ public final class WebAppsClientImpl
         } else {
             access.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.putPrivateAccessVnetSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), access, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, access, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -56525,10 +57081,11 @@ public final class WebAppsClientImpl
         } else {
             access.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.putPrivateAccessVnetSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), access, accept, context);
+            this.client.getSubscriptionId(), apiVersion, access, accept, context);
     }
 
     /**
@@ -56630,11 +57187,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getPrivateEndpointConnectionListSlot(this.client.getEndpoint(), resourceGroupName,
-                    name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getPrivateEndpointConnectionListSlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<RemotePrivateEndpointConnectionArmResourceInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -56677,11 +57234,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getPrivateEndpointConnectionListSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -56808,11 +57366,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getPrivateEndpointConnectionSlot(this.client.getEndpoint(),
-                resourceGroupName, name, privateEndpointConnectionName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.getPrivateEndpointConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    privateEndpointConnectionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -56858,11 +57417,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateEndpointConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-            privateEndpointConnectionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            privateEndpointConnectionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -56977,11 +57536,12 @@ public final class WebAppsClientImpl
         } else {
             privateEndpointWrapper.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.approveOrRejectPrivateEndpointConnectionSlot(this.client.getEndpoint(),
                 resourceGroupName, name, privateEndpointConnectionName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), privateEndpointWrapper, accept, context))
+                apiVersion, privateEndpointWrapper, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -57034,11 +57594,12 @@ public final class WebAppsClientImpl
         } else {
             privateEndpointWrapper.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.approveOrRejectPrivateEndpointConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-            privateEndpointConnectionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            privateEndpointWrapper, accept, context);
+            privateEndpointConnectionName, slot, this.client.getSubscriptionId(), apiVersion, privateEndpointWrapper,
+            accept, context);
     }
 
     /**
@@ -57291,11 +57852,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deletePrivateEndpointConnectionSlot(this.client.getEndpoint(),
                 resourceGroupName, name, privateEndpointConnectionName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -57339,11 +57901,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePrivateEndpointConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-            privateEndpointConnectionName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            privateEndpointConnectionName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -57561,10 +58123,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateLinkResourcesSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -57604,10 +58167,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateLinkResourcesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -57707,10 +58271,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProcessesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -57755,11 +58320,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProcessesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -57894,10 +58460,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getProcessSlot(this.client.getEndpoint(), resourceGroupName, name,
-                processId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -57942,10 +58509,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProcessSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -58057,10 +58625,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteProcessSlot(this.client.getEndpoint(), resourceGroupName, name,
-                processId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -58107,10 +58676,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteProcessSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -58224,10 +58794,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getProcessDumpSlot(this.client.getEndpoint(), resourceGroupName, name,
-                processId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -58272,10 +58843,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProcessDumpSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -58386,10 +58958,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProcessModulesSlot(this.client.getEndpoint(), resourceGroupName, name,
-                processId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessModuleInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -58437,11 +59010,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProcessModulesSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -58583,11 +59157,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.getProcessModuleSlot(this.client.getEndpoint(), resourceGroupName, name, processId,
-                    baseAddress, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getProcessModuleSlot(this.client.getEndpoint(), resourceGroupName, name,
+                processId, baseAddress, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -58636,10 +59210,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getProcessModuleSlot(this.client.getEndpoint(), resourceGroupName, name, processId, baseAddress,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -58756,10 +59331,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listProcessThreadsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                processId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                processId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<ProcessThreadInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -58807,11 +59383,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listProcessThreadsSlot(this.client.getEndpoint(), resourceGroupName, name, processId, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -58945,10 +59522,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPublicCertificatesSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<PublicCertificateInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -58991,11 +59569,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listPublicCertificatesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -59124,11 +59703,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPublicCertificateSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                slot, publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -59173,10 +59752,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPublicCertificateSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -59295,11 +59875,12 @@ public final class WebAppsClientImpl
         } else {
             publicCertificate.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdatePublicCertificateSlot(this.client.getEndpoint(),
-                resourceGroupName, name, publicCertificateName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), publicCertificate, accept, context))
+                resourceGroupName, name, publicCertificateName, slot, this.client.getSubscriptionId(), apiVersion,
+                publicCertificate, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -59353,11 +59934,12 @@ public final class WebAppsClientImpl
         } else {
             publicCertificate.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdatePublicCertificateSlot(this.client.getEndpoint(), resourceGroupName, name,
-            publicCertificateName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            publicCertificate, accept, context);
+            publicCertificateName, slot, this.client.getSubscriptionId(), apiVersion, publicCertificate, accept,
+            context);
     }
 
     /**
@@ -59474,11 +60056,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deletePublicCertificateSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, slot, publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -59523,10 +60105,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePublicCertificateSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            publicCertificateName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            publicCertificateName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -59637,11 +60220,12 @@ public final class WebAppsClientImpl
         } else {
             publishingProfileOptions.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/xml";
         return FluxUtil
-            .withContext(context -> service.listPublishingProfileXmlWithSecretsSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                publishingProfileOptions, accept, context))
+            .withContext(
+                context -> service.listPublishingProfileXmlWithSecretsSlot(this.client.getEndpoint(), resourceGroupName,
+                    name, slot, this.client.getSubscriptionId(), apiVersion, publishingProfileOptions, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -59690,10 +60274,11 @@ public final class WebAppsClientImpl
         } else {
             publishingProfileOptions.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/xml";
         context = this.client.mergeContext(context);
         return service.listPublishingProfileXmlWithSecretsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), publishingProfileOptions, accept, context);
+            this.client.getSubscriptionId(), apiVersion, publishingProfileOptions, accept, context);
     }
 
     /**
@@ -59803,10 +60388,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.resetSlotConfigurationSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -59848,10 +60434,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.resetSlotConfigurationSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -59957,11 +60544,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.restartSlot(this.client.getEndpoint(), resourceGroupName, name, slot, softRestart,
-                    synchronous, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.restartSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
+                softRestart, synchronous, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -60004,10 +60591,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restartSlot(this.client.getEndpoint(), resourceGroupName, name, slot, softRestart, synchronous,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -60115,10 +60703,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restoreFromBackupBlobSlot(this.client.getEndpoint(), resourceGroupName,
-                name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context))
+                name, slot, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -60164,10 +60753,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreFromBackupBlobSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -60390,11 +60980,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.restoreFromDeletedAppSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context))
+            .withContext(context -> service.restoreFromDeletedAppSlot(this.client.getEndpoint(), resourceGroupName,
+                name, slot, this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -60439,10 +61029,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreFromDeletedAppSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context);
+            this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context);
     }
 
     /**
@@ -60658,10 +61249,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.restoreSnapshotSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -60707,10 +61299,11 @@ public final class WebAppsClientImpl
         } else {
             restoreRequest.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.restoreSnapshotSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), restoreRequest, accept, context);
+            this.client.getSubscriptionId(), apiVersion, restoreRequest, accept, context);
     }
 
     /**
@@ -60926,10 +61519,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSiteContainersSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteContainerInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -60969,11 +61563,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSiteContainersSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -61092,10 +61687,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteContainerSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, containerName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, containerName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -61138,10 +61734,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSiteContainerSlot(this.client.getEndpoint(), resourceGroupName, name, slot, containerName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -61246,11 +61843,12 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdateSiteContainerSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, containerName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), request, accept, context))
+            .withContext(
+                context -> service.createOrUpdateSiteContainerSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    slot, containerName, this.client.getSubscriptionId(), apiVersion, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -61299,10 +61897,11 @@ public final class WebAppsClientImpl
         } else {
             request.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSiteContainerSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            containerName, this.client.getSubscriptionId(), this.client.getApiVersion(), request, accept, context);
+            containerName, this.client.getSubscriptionId(), apiVersion, request, accept, context);
     }
 
     /**
@@ -61406,10 +62005,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSiteContainerSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, containerName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, containerName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -61451,10 +62051,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSiteContainerSlot(this.client.getEndpoint(), resourceGroupName, name, slot, containerName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -61550,10 +62151,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSiteExtensionsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SiteExtensionInfoInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -61596,11 +62198,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSiteExtensionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -61729,10 +62332,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSiteExtensionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                siteExtensionId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                siteExtensionId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -61777,10 +62381,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSiteExtensionSlot(this.client.getEndpoint(), resourceGroupName, name, siteExtensionId, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -61889,10 +62494,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.installSiteExtensionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                siteExtensionId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                siteExtensionId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -61937,10 +62543,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.installSiteExtensionSlot(this.client.getEndpoint(), resourceGroupName, name, siteExtensionId,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -62167,10 +62774,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSiteExtensionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                siteExtensionId, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                siteExtensionId, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -62216,10 +62824,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSiteExtensionSlot(this.client.getEndpoint(), resourceGroupName, name, siteExtensionId,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -62329,10 +62938,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSlotDifferencesSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context))
             .<PagedResponse<SlotDifferenceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -62379,11 +62989,12 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSlotDifferencesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context)
+                this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -62515,10 +63126,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.swapSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context))
+                this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -62563,10 +63175,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.swapSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context);
+            this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context);
     }
 
     /**
@@ -62773,10 +63386,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSnapshotsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SnapshotInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -62818,11 +63432,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSnapshotsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -62944,11 +63559,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listSnapshotsFromDRSecondarySlot(this.client.getEndpoint(), resourceGroupName, name,
-                    slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listSnapshotsFromDRSecondarySlot(this.client.getEndpoint(),
+                resourceGroupName, name, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SnapshotInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -62990,11 +63605,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSnapshotsFromDRSecondarySlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -63120,10 +63736,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -63164,10 +63781,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -63273,11 +63891,12 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdateSourceControlSlot(this.client.getEndpoint(),
-                resourceGroupName, name, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                siteSourceControl, accept, context))
+            .withContext(
+                context -> service.createOrUpdateSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    slot, this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -63325,10 +63944,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context);
     }
 
     /**
@@ -63555,10 +64175,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, additionalFlags, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, additionalFlags, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -63600,10 +64221,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            additionalFlags, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            additionalFlags, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -63715,10 +64337,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -63766,10 +64389,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSourceControlSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context);
     }
 
     /**
@@ -63872,10 +64496,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -63914,10 +64539,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -64011,11 +64637,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName, name,
-                durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+                durationInSeconds, slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -64057,11 +64684,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName, name, durationInSeconds,
-            slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-            context);
+            slot, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -64341,10 +64968,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -64383,10 +65011,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -64477,10 +65106,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -64519,10 +65149,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopNetworkTraceSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -64614,10 +65245,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.syncRepositorySlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -64656,10 +65288,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.syncRepositorySlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -64751,10 +65384,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.syncFunctionTriggersSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -64793,10 +65427,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.syncFunctionTriggersSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -64891,10 +65526,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listTriggeredWebJobsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<TriggeredWebJobInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -64937,11 +65573,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listTriggeredWebJobsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -65071,10 +65708,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getTriggeredWebJobSlot(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -65118,10 +65756,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getTriggeredWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -65228,10 +65867,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteTriggeredWebJobSlot(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -65275,10 +65915,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteTriggeredWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -65384,10 +66025,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listTriggeredWebJobHistorySlot(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<TriggeredJobHistoryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -65434,11 +66076,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listTriggeredWebJobHistorySlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -65579,11 +66222,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getTriggeredWebJobHistorySlot(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, id, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, webJobName, id, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -65631,10 +66274,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getTriggeredWebJobHistorySlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, id,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -65746,10 +66390,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.runTriggeredWebJobSlot(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -65793,10 +66438,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.runTriggeredWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -65900,10 +66546,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listUsagesSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), filter, accept, context))
+                this.client.getSubscriptionId(), apiVersion, filter, accept, context))
             .<PagedResponse<CsmUsageQuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -65948,11 +66595,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listUsagesSlot(this.client.getEndpoint(), resourceGroupName, name, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), filter, accept, context)
+                apiVersion, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -66106,10 +66754,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listVnetConnectionsSlot(this.client.getEndpoint(), resourceGroupName, name,
-                slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -66149,10 +66798,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listVnetConnectionsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -66256,10 +66906,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                vnetName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                vnetName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -66304,10 +66955,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, vnetName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -66423,11 +67075,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdateVnetConnectionSlot(this.client.getEndpoint(),
-                resourceGroupName, name, vnetName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+            .withContext(
+                context -> service.createOrUpdateVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
+                    vnetName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -66481,10 +67134,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -66600,10 +67254,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                vnetName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                vnetName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -66648,10 +67303,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, vnetName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -66768,11 +67424,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name,
-                vnetName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope,
-                accept, context))
+                vnetName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -66825,10 +67481,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateVnetConnectionSlot(this.client.getEndpoint(), resourceGroupName, name, vnetName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -66949,11 +67606,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getVnetConnectionGatewaySlot(this.client.getEndpoint(), resourceGroupName,
-                name, vnetName, gatewayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
-                context))
+                name, vnetName, gatewayName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -67003,10 +67660,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getVnetConnectionGatewaySlot(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            gatewayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            gatewayName, slot, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -67134,11 +67792,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateVnetConnectionGatewaySlot(this.client.getEndpoint(),
-                resourceGroupName, name, vnetName, gatewayName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), connectionEnvelope, accept, context))
+                resourceGroupName, name, vnetName, gatewayName, slot, this.client.getSubscriptionId(), apiVersion,
+                connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -67195,11 +67854,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateVnetConnectionGatewaySlot(this.client.getEndpoint(), resourceGroupName, name,
-            vnetName, gatewayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(),
-            connectionEnvelope, accept, context);
+            vnetName, gatewayName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+            context);
     }
 
     /**
@@ -67327,11 +67987,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateVnetConnectionGatewaySlot(this.client.getEndpoint(),
-                resourceGroupName, name, vnetName, gatewayName, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), connectionEnvelope, accept, context))
+                resourceGroupName, name, vnetName, gatewayName, slot, this.client.getSubscriptionId(), apiVersion,
+                connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -67388,11 +68049,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateVnetConnectionGatewaySlot(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            gatewayName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            gatewayName, slot, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -67504,10 +68165,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listWebJobsSlot(this.client.getEndpoint(), resourceGroupName, name, slot,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<WebJobInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -67550,11 +68212,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listWebJobsSlot(this.client.getEndpoint(), resourceGroupName, name, slot, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -67680,10 +68343,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getWebJobSlot(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, slot, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, slot, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -67727,10 +68391,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getWebJobSlot(this.client.getEndpoint(), resourceGroupName, name, webJobName, slot,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -67832,11 +68497,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listSlotDifferencesFromProduction(this.client.getEndpoint(), resourceGroupName, name,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context))
+            .withContext(context -> service.listSlotDifferencesFromProduction(this.client.getEndpoint(),
+                resourceGroupName, name, this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context))
             .<PagedResponse<SlotDifferenceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -67879,11 +68544,12 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSlotDifferencesFromProduction(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context)
+                this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -68007,10 +68673,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.swapSlotWithProduction(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context))
+                this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -68051,10 +68718,11 @@ public final class WebAppsClientImpl
         } else {
             slotSwapEntity.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.swapSlotWithProduction(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), slotSwapEntity, accept, context);
+            this.client.getSubscriptionId(), apiVersion, slotSwapEntity, accept, context);
     }
 
     /**
@@ -68248,10 +68916,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSnapshots(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SnapshotInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -68289,11 +68958,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSnapshots(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -68405,10 +69075,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listSnapshotsFromDRSecondary(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<SnapshotInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -68446,11 +69117,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listSnapshotsFromDRSecondary(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -68564,10 +69236,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getSourceControl(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -68603,10 +69276,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getSourceControl(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -68701,10 +69375,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateSourceControl(this.client.getEndpoint(), resourceGroupName,
-                name, this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context))
+                name, this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -68747,10 +69422,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateSourceControl(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context);
     }
 
     /**
@@ -68953,10 +69629,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteSourceControl(this.client.getEndpoint(), resourceGroupName, name,
-                additionalFlags, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                additionalFlags, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -68993,10 +69670,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteSourceControl(this.client.getEndpoint(), resourceGroupName, name, additionalFlags,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -69096,10 +69774,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateSourceControl(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context))
+                this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -69142,10 +69821,11 @@ public final class WebAppsClientImpl
         } else {
             siteSourceControl.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateSourceControl(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), siteSourceControl, accept, context);
+            this.client.getSubscriptionId(), apiVersion, siteSourceControl, accept, context);
     }
 
     /**
@@ -69236,10 +69916,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.start(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -69273,10 +69954,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.start(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            apiVersion, accept, context);
     }
 
     /**
@@ -69363,11 +70045,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.startNetworkTrace(this.client.getEndpoint(), resourceGroupName, name,
-                durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                accept, context))
+                durationInSeconds, maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -69405,10 +70088,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.startNetworkTrace(this.client.getEndpoint(), resourceGroupName, name, durationInSeconds,
-            maxFrameLength, sasUrl, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            maxFrameLength, sasUrl, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -69668,10 +70352,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stop(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -69705,10 +70390,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stop(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
+            apiVersion, accept, context);
     }
 
     /**
@@ -69791,10 +70477,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.stopNetworkTrace(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -69829,10 +70516,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.stopNetworkTrace(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -69915,10 +70603,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.syncRepository(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -69953,10 +70642,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.syncRepository(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -70039,10 +70729,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.syncFunctionTriggers(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -70077,10 +70768,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.syncFunctionTriggers(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -70165,10 +70857,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listTriggeredWebJobs(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<TriggeredWebJobInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -70206,11 +70899,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listTriggeredWebJobs(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -70326,10 +71020,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getTriggeredWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -70369,10 +71064,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getTriggeredWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -70470,10 +71166,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteTriggeredWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -70512,10 +71209,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteTriggeredWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -70610,10 +71308,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listTriggeredWebJobHistory(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<TriggeredJobHistoryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -70656,11 +71355,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listTriggeredWebJobHistory(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context)
+                this.client.getSubscriptionId(), apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -70791,10 +71491,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getTriggeredWebJobHistory(this.client.getEndpoint(), resourceGroupName,
-                name, webJobName, id, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                name, webJobName, id, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -70838,10 +71539,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getTriggeredWebJobHistory(this.client.getEndpoint(), resourceGroupName, name, webJobName, id,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -70944,10 +71646,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.runTriggeredWebJob(this.client.getEndpoint(), resourceGroupName, name,
-                webJobName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                webJobName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -70987,10 +71690,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.runTriggeredWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -71085,10 +71789,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listUsages(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), filter, accept, context))
+                this.client.getSubscriptionId(), apiVersion, filter, accept, context))
             .<PagedResponse<CsmUsageQuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -71128,11 +71833,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listUsages(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), filter, accept, context)
+            .listUsages(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(), apiVersion,
+                filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -71270,10 +71976,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listVnetConnections(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -71308,10 +72015,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listVnetConnections(this.client.getEndpoint(), resourceGroupName, name,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -71403,10 +72111,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getVnetConnection(this.client.getEndpoint(), resourceGroupName, name,
-                vnetName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                vnetName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -71446,10 +72155,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getVnetConnection(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -71552,11 +72262,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateVnetConnection(this.client.getEndpoint(), resourceGroupName,
-                name, vnetName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope,
-                accept, context))
+                name, vnetName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -71605,10 +72315,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateVnetConnection(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -71713,10 +72424,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteVnetConnection(this.client.getEndpoint(), resourceGroupName, name,
-                vnetName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                vnetName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -71756,10 +72468,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteVnetConnection(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -71864,11 +72577,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.updateVnetConnection(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-                    this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context))
+            .withContext(context -> service.updateVnetConnection(this.client.getEndpoint(), resourceGroupName, name,
+                vnetName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -71916,10 +72629,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateVnetConnection(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept, context);
+            this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -72029,10 +72743,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getVnetConnectionGateway(this.client.getEndpoint(), resourceGroupName, name,
-                vnetName, gatewayName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                vnetName, gatewayName, this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -72077,10 +72792,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getVnetConnectionGateway(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            gatewayName, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            gatewayName, this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -72197,11 +72913,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateVnetConnectionGateway(this.client.getEndpoint(),
-                resourceGroupName, name, vnetName, gatewayName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), connectionEnvelope, accept, context))
+                resourceGroupName, name, vnetName, gatewayName, this.client.getSubscriptionId(), apiVersion,
+                connectionEnvelope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -72253,11 +72970,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateVnetConnectionGateway(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            gatewayName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            gatewayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -72373,11 +73090,12 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.updateVnetConnectionGateway(this.client.getEndpoint(), resourceGroupName,
-                name, vnetName, gatewayName, this.client.getSubscriptionId(), this.client.getApiVersion(),
-                connectionEnvelope, accept, context))
+                name, vnetName, gatewayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -72428,11 +73146,11 @@ public final class WebAppsClientImpl
         } else {
             connectionEnvelope.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.updateVnetConnectionGateway(this.client.getEndpoint(), resourceGroupName, name, vnetName,
-            gatewayName, this.client.getSubscriptionId(), this.client.getApiVersion(), connectionEnvelope, accept,
-            context);
+            gatewayName, this.client.getSubscriptionId(), apiVersion, connectionEnvelope, accept, context);
     }
 
     /**
@@ -72532,10 +73250,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listWebJobs(this.client.getEndpoint(), resourceGroupName, name,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .<PagedResponse<WebJobInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -72573,11 +73292,12 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listWebJobs(this.client.getEndpoint(), resourceGroupName, name, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -72688,10 +73408,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -72730,10 +73451,11 @@ public final class WebAppsClientImpl
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getWebJob(this.client.getEndpoint(), resourceGroupName, name, webJobName,
-            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+            this.client.getSubscriptionId(), apiVersion, accept, context);
     }
 
     /**
@@ -72827,11 +73549,12 @@ public final class WebAppsClientImpl
         if (workflowArtifacts != null) {
             workflowArtifacts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.deployWorkflowArtifacts(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, name, this.client.getApiVersion(), workflowArtifacts, accept, context))
+                    resourceGroupName, name, apiVersion, workflowArtifacts, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -72870,10 +73593,11 @@ public final class WebAppsClientImpl
         if (workflowArtifacts != null) {
             workflowArtifacts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deployWorkflowArtifacts(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, this.client.getApiVersion(), workflowArtifacts, accept, context);
+            resourceGroupName, name, apiVersion, workflowArtifacts, accept, context);
     }
 
     /**
@@ -72970,11 +73694,12 @@ public final class WebAppsClientImpl
         if (workflowArtifacts != null) {
             workflowArtifacts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deployWorkflowArtifactsSlot(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, name, slot, this.client.getApiVersion(),
-                workflowArtifacts, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, name, slot, apiVersion, workflowArtifacts, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -73017,10 +73742,11 @@ public final class WebAppsClientImpl
         if (workflowArtifacts != null) {
             workflowArtifacts.validate();
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deployWorkflowArtifactsSlot(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, slot, this.client.getApiVersion(), workflowArtifacts, accept, context);
+            resourceGroupName, name, slot, apiVersion, workflowArtifacts, accept, context);
     }
 
     /**
@@ -73116,11 +73842,11 @@ public final class WebAppsClientImpl
         if (slot == null) {
             return Mono.error(new IllegalArgumentException("Parameter slot is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listInstanceWorkflowsSlot(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, name, slot, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listInstanceWorkflowsSlot(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, name, slot, apiVersion, accept, context))
             .<PagedResponse<WorkflowEnvelopeInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -73160,11 +73886,12 @@ public final class WebAppsClientImpl
         if (slot == null) {
             return Mono.error(new IllegalArgumentException("Parameter slot is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInstanceWorkflowsSlot(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                name, slot, this.client.getApiVersion(), accept, context)
+                name, slot, apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -73279,11 +74006,12 @@ public final class WebAppsClientImpl
         if (workflowName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.getInstanceWorkflowSlot(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, name, slot, workflowName, this.client.getApiVersion(), accept, context))
+                    resourceGroupName, name, slot, workflowName, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -73326,10 +74054,11 @@ public final class WebAppsClientImpl
         if (workflowName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getInstanceWorkflowSlot(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, slot, workflowName, this.client.getApiVersion(), accept, context);
+            resourceGroupName, name, slot, workflowName, apiVersion, accept, context);
     }
 
     /**
@@ -73425,11 +74154,11 @@ public final class WebAppsClientImpl
         if (slot == null) {
             return Mono.error(new IllegalArgumentException("Parameter slot is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listWorkflowsConnectionsSlot(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, name, slot, this.client.getApiVersion(), accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, name, slot, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -73466,10 +74195,11 @@ public final class WebAppsClientImpl
         if (slot == null) {
             return Mono.error(new IllegalArgumentException("Parameter slot is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listWorkflowsConnectionsSlot(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, slot, this.client.getApiVersion(), accept, context);
+            resourceGroupName, name, slot, apiVersion, accept, context);
     }
 
     /**
@@ -73553,10 +74283,11 @@ public final class WebAppsClientImpl
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listWorkflows(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, name, this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, apiVersion, accept, context))
             .<PagedResponse<WorkflowEnvelopeInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -73592,11 +74323,12 @@ public final class WebAppsClientImpl
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listWorkflows(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, name,
-                this.client.getApiVersion(), accept, context)
+                apiVersion, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -73700,10 +74432,11 @@ public final class WebAppsClientImpl
         if (workflowName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getWorkflow(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, name, workflowName, this.client.getApiVersion(), accept, context))
+                resourceGroupName, name, workflowName, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -73742,10 +74475,11 @@ public final class WebAppsClientImpl
         if (workflowName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getWorkflow(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, name,
-            workflowName, this.client.getApiVersion(), accept, context);
+            workflowName, apiVersion, accept, context);
     }
 
     /**
@@ -73831,10 +74565,11 @@ public final class WebAppsClientImpl
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listWorkflowsConnections(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, name, this.client.getApiVersion(), accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, name, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -73867,10 +74602,11 @@ public final class WebAppsClientImpl
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        final String apiVersion = "2025-03-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listWorkflowsConnections(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, name, this.client.getApiVersion(), accept, context);
+            resourceGroupName, name, apiVersion, accept, context);
     }
 
     /**
@@ -73922,6 +74658,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get all apps for a subscription.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -73947,6 +74685,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get all apps for a subscription.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -73973,6 +74713,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets all web, mobile, and API apps in the specified resource group.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74000,6 +74742,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets all web, mobile, and API apps in the specified resource group.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74026,6 +74770,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74052,6 +74798,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74078,6 +74826,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74108,6 +74858,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74136,6 +74888,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the configurations of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74164,6 +74918,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the configurations of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74192,6 +74948,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74220,6 +74978,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74247,6 +75007,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74275,6 +75037,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74303,6 +75067,9 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets a list of web app configuration snapshots identifiers. Each element of the list contains a timestamp and the
+     * ID of the snapshot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74331,6 +75098,9 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets a list of web app configuration snapshots identifiers. Each element of the list contains a timestamp and the
+     * ID of the snapshot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74359,6 +75129,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List continuous web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74387,6 +75159,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List continuous web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74415,6 +75189,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployment statuses for an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74444,6 +75220,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployment statuses for an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74472,6 +75250,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployments for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74498,6 +75278,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployments for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74524,6 +75306,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists ownership identifiers for domain associated with web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74550,6 +75334,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists ownership identifiers for domain associated with web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74577,6 +75363,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the functions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74605,6 +75393,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the functions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74634,6 +75424,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get hostname bindings for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74662,6 +75454,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get hostname bindings for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74690,6 +75484,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets all scale-out instances of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74718,6 +75514,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets all scale-out instances of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74745,6 +75543,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74774,6 +75574,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74803,6 +75605,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74832,6 +75636,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74861,6 +75667,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74890,6 +75698,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74919,6 +75729,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74945,6 +75757,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74971,6 +75785,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets perfmon counters for web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -74999,6 +75815,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets perfmon counters for web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75027,6 +75845,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the list of private endpoint connections associated with a site
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75056,6 +75876,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the list of private endpoint connections associated with a site
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75083,6 +75905,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75111,6 +75935,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75139,6 +75965,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75168,6 +75996,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75197,6 +76027,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75226,6 +76058,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75255,6 +76089,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get public certificates for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75283,6 +76119,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get public certificates for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75311,6 +76149,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists all the site containers of a site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75338,6 +76178,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists all the site containers of a site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75365,6 +76207,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of siteextensions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75394,6 +76238,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of siteextensions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75423,6 +76269,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets an app's deployment slots.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75449,6 +76297,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets an app's deployment slots.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75475,6 +76325,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75501,6 +76353,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75527,6 +76381,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75557,6 +76413,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns whether Scm basic auth is allowed and whether Ftp is allowed for a given site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75586,6 +76444,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the configurations of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75614,6 +76474,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the configurations of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75642,6 +76504,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75670,6 +76534,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75697,6 +76563,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75725,6 +76593,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the config reference app settings and status of an app
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75753,6 +76623,9 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets a list of web app configuration snapshots identifiers. Each element of the list contains a timestamp and the
+     * ID of the snapshot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75782,6 +76655,9 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets a list of web app configuration snapshots identifiers. Each element of the list contains a timestamp and the
+     * ID of the snapshot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75810,6 +76686,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List continuous web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75838,6 +76716,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List continuous web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75866,6 +76746,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployment statuses for an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75895,6 +76777,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployment statuses for an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75923,6 +76807,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployments for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75950,6 +76836,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List deployments for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -75977,6 +76865,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists ownership identifiers for domain associated with web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76005,6 +76895,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists ownership identifiers for domain associated with web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76032,6 +76924,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the functions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76061,6 +76955,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the functions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76090,6 +76986,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get hostname bindings for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76118,6 +77016,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get hostname bindings for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76146,6 +77046,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets all scale-out instances of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76173,6 +77075,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets all scale-out instances of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76200,6 +77104,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76229,6 +77135,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76258,6 +77166,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76287,6 +77197,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76316,6 +77228,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76345,6 +77259,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76374,6 +77290,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76401,6 +77319,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets existing backups of an app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76428,6 +77348,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets perfmon counters for web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76456,6 +77378,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets perfmon counters for web app.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76484,6 +77408,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the list of private endpoint connections associated with a site
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76513,6 +77439,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the list of private endpoint connections associated with a site
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76540,6 +77468,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76568,6 +77498,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of processes for a web site, or a deployment slot, or for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76597,6 +77529,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76626,6 +77560,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List module information for a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76655,6 +77591,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76684,6 +77622,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the threads in a process by its ID for a specific scaled-out instance in a web site.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76713,6 +77653,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get public certificates for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76741,6 +77683,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get public certificates for an app or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76769,6 +77713,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists all the site containers of a site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76796,6 +77742,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Lists all the site containers of a site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76823,6 +77771,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of siteextensions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76852,6 +77802,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get list of siteextensions for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76881,6 +77833,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get the difference in configuration settings between two web app slots.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76908,6 +77862,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get the difference in configuration settings between two web app slots.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76935,6 +77891,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76962,6 +77920,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -76989,6 +77949,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user from DRSecondary endpoint.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77017,6 +77979,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user from DRSecondary endpoint.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77045,6 +78009,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List triggered web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77073,6 +78039,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List triggered web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77101,6 +78069,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List a triggered web job's history for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77130,6 +78100,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List a triggered web job's history for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77159,6 +78131,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the quota usage information of an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77185,6 +78159,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the quota usage information of an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77212,6 +78188,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List webjobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77239,6 +78217,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List webjobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77266,6 +78246,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get the difference in configuration settings between two web app slots.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77294,6 +78276,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Get the difference in configuration settings between two web app slots.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77321,6 +78305,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77348,6 +78334,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77375,6 +78363,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user from DRSecondary endpoint.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77402,6 +78392,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Returns all Snapshots to the user from DRSecondary endpoint.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77430,6 +78422,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List triggered web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77458,6 +78452,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List triggered web jobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77486,6 +78482,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List a triggered web job's history for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77516,6 +78514,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List a triggered web job's history for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77545,6 +78545,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the quota usage information of an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77571,6 +78573,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * Gets the quota usage information of an app (or deployment slot, if specified).
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77597,6 +78601,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List webjobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77624,6 +78630,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List webjobs for an app, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77651,6 +78659,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the workflows for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77679,6 +78689,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the workflows for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77707,6 +78719,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the workflows for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
@@ -77734,6 +78748,8 @@ public final class WebAppsClientImpl
     }
 
     /**
+     * List the workflows for a web site, or a deployment slot.
+     * 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
