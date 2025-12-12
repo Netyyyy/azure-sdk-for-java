@@ -102,8 +102,9 @@ instructions: |
       Please refer to [azure-spring-data-cosmos/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-data-cosmos/CHANGELOG.md#<VERSION-DATE>) for more details."
 
   7) Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
-     - Parse the same release section, if the section has any real content (not only '-' / empty), AGGREGATE it into the top-level `sdk/spring/CHANGELOG.md` under a new subsection at the same level as
-      the "Azure Spring Data Cosmos" note (e.g., "Azure Spring Event Hubs Starter", etc.). Preserve headings and bullet formatting; collapse purely empty subsections.
+     - Parse the same release section.
+     - If the section has any real content (not only '-' / empty), AGGREGATE it into the top-level `sdk/spring/CHANGELOG.md` under a new subsection at the same level as the "Azure Spring Data Cosmos" note (e.g., "Azure Spring Event Hubs Starter", etc.).
+     - Preserve headings and bullet formatting; collapse purely empty subsections.
        
   8) Manually bump `azure-sdk-bom` version to `AZURE_SDK_BOM_VERSION` in `sdk/spring/spring-cloud-azure-dependencies/pom.xml`.
 
@@ -116,7 +117,7 @@ instructions: |
 
   10) Update `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
      - Replace "Unreleased" to <RELEASE_DATE>
-     - Replace `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` with `Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#<VERSION-DATE>) for more details.`
+     - Direactly replace `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` sections with `Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#<VERSION-DATE>) for more details.`
 
   11) Open a PR based on <RELEASE_BRANCH>:
      - tytle: `Prepare for Spring Cloud Azure <RELEASE_VERSION> release`
@@ -144,6 +145,7 @@ checklist:
   - "[ ] Added compatibility notes to sdk/spring/CHANGELOG.md"
   - "[ ] Added Spring Cloud Azure Dependencies (BOM) section"
   - "[ ] Added Azure Spring Data Cosmos section"
+  - "[ ] Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`" and move contents."
   - "[ ] Updated all CHANGELOGs"
   - "[ ] Opened PR: Prepare for Spring Cloud Azure <RELEASE_VERSION> release"
 
