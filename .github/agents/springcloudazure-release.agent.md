@@ -96,7 +96,7 @@ instructions: |
       #### Dependency Updates
       - Upgrade `azure-sdk-bom` to <AZURE_SDK_BOM_VERSION>."
       
-  6) Add Azure Spring Data Cosmos section in `sdk/spring/CHANGELOG.md`:
+  6) Add Azure Spring Data Cosmos section in `sdk/spring/CHANGELOG.md` at the last subsection of the release block:
      "### Azure Spring Data Cosmos
       This section includes changes in `azure-spring-data-cosmos` module.
       Please refer to [azure-spring-data-cosmos/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-data-cosmos/CHANGELOG.md#<VERSION-DATE>) for more details."
