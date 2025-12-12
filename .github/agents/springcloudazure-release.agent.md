@@ -103,10 +103,18 @@ instructions: |
 
   7) Manually bump `azure-sdk-bom` version to `AZURE_SDK_BOM_VERSION` in `sdk/spring/spring-cloud-azure-dependencies/pom.xml`.
 
-  8) Update each `xxx-starter` `CHANGELOG.md` with a pointer:
-     - `Please refer to https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#<VERSION-DATE> for more details.`
-  
-  6) Open a PR based on <RELEASE_BRANCH>:
+  8) Update `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
+     - Replace "Unreleased" to <RELEASE_DATE>
+     - Remove empty section of `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes`
+     - If all section removed, add following instead
+       `#### Other Changes
+        * regular release`
+
+  9) Update `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
+     - Replace "Unreleased" to <RELEASE_DATE>
+     - Replace `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` with `Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#<VERSION-DATE>) for more details.`
+
+  10) Open a PR based on <RELEASE_BRANCH>:
      - tytle: `Prepare for Spring Cloud Azure <RELEASE_VERSION> release`
 
   ### Constraints
@@ -121,7 +129,7 @@ instructions: |
   - `SPRING_BOOT_RANGE`
   - `SPRING_CLOUD_RANGE`
   - `RELEASE_BRANCH`
-  - `RELEASE_VERSION`
+  - `RELEASE_DATE`
   - `VERSION-DATE`
 
 checklist:
@@ -132,6 +140,6 @@ checklist:
   - "[ ] Added compatibility notes to sdk/spring/CHANGELOG.md"
   - "[ ] Added Spring Cloud Azure Dependencies (BOM) section"
   - "[ ] Added Azure Spring Data Cosmos section"
-  - "[ ] Updated all xxx-starter CHANGELOG pointers"
+  - "[ ] Updated all CHANGELOGs"
   - "[ ] Opened PR: Prepare for Spring Cloud Azure <RELEASE_VERSION> release"
 
