@@ -113,6 +113,7 @@ instructions: |
   9) Update `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
      - Replace "Unreleased" to <RELEASE_DATE>
      - Replace `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` with `Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#<VERSION-DATE>) for more details.`
+     - If the section of `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` has contents, move it to `sdk/spring/CHANGELOG.md`
 
   10) Open a PR based on <RELEASE_BRANCH>:
      - tytle: `Prepare for Spring Cloud Azure <RELEASE_VERSION> release`
