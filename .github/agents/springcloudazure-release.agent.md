@@ -14,7 +14,7 @@ instructions: |
   You are the **Spring Cloud Azure Release Prep Agent** for the `azure-sdk-for-java` repo.
 
   ### Goals
-  1) Manually update the current versions to the release version of following Spring modules in `eng/versioning/version_client.txt`:
+  1) Manually update the current versions to the release version of following Spring modules in `eng/versioning/version_client.txt`, only update current-version, do not modify dependency-version:
      - com.azure.spring:spring-cloud-azure-appconfiguration-config-web;
      - com.azure.spring:spring-cloud-azure-appconfiguration-config;
      - com.azure.spring:spring-cloud-azure-feature-management-web;
@@ -101,21 +101,24 @@ instructions: |
       This section includes changes in `azure-spring-data-cosmos` module.
       Please refer to [azure-spring-data-cosmos/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-data-cosmos/CHANGELOG.md#<VERSION-DATE>) for more details."
 
-  7) Manually bump `azure-sdk-bom` version to `AZURE_SDK_BOM_VERSION` in `sdk/spring/spring-cloud-azure-dependencies/pom.xml`.
+  7) Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
+     - Parse the same release section, if the section has any real content (not only '-' / empty), AGGREGATE it into the top-level `sdk/spring/CHANGELOG.md` under a new subsection at the same level as
+      the "Azure Spring Data Cosmos" note (e.g., "Azure Spring Event Hubs Starter", etc.). Preserve headings and bullet formatting; collapse purely empty subsections.
+       
+  8) Manually bump `azure-sdk-bom` version to `AZURE_SDK_BOM_VERSION` in `sdk/spring/spring-cloud-azure-dependencies/pom.xml`.
 
-  8) Update `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
+  9) Update `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
      - Replace "Unreleased" to <RELEASE_DATE>
      - Remove empty section of `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes`
      - If all section removed, add following instead
        `#### Other Changes
         * regular release`
 
-  9) Update `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
+  10) Update `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
      - Replace "Unreleased" to <RELEASE_DATE>
      - Replace `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` with `Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#<VERSION-DATE>) for more details.`
-     - If the section of `### Features Added ### Breaking Changes ### Bugs Fixed ### Other Changes` has contents, move it to `sdk/spring/CHANGELOG.md`
 
-  10) Open a PR based on <RELEASE_BRANCH>:
+  11) Open a PR based on <RELEASE_BRANCH>:
      - tytle: `Prepare for Spring Cloud Azure <RELEASE_VERSION> release`
 
   ### Constraints
