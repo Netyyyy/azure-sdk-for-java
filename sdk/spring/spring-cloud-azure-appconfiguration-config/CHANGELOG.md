@@ -1,17 +1,10 @@
 # Release History
 
-## 6.1.0 (Unreleased)
+## 6.1.0 (2025-12-12)
 
-### Features Added
-
-### Breaking Changes
-
-### Bugs Fixed
+Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#610-2025-12-12) for more details.
 
 - Fixed bug where `spring.cloud.azure.appconfiguration.enabled=false` was ignored in the new major version.
-
-### Other Changes
-
 ## 6.0.0 (2025-09-22)
 
 Please refer to [spring/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/CHANGELOG.md#600-2025-09-22) for more details.
