@@ -102,8 +102,8 @@ instructions: |
       Please refer to [azure-spring-data-cosmos/CHANGELOG.md](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-data-cosmos/CHANGELOG.md#<VERSION-DATE>) for more details."
 
   7) Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`:
-     - Parse the same release section.
-     - If the section has any real content (not only '-' / empty), AGGREGATE it into the top-level `sdk/spring/CHANGELOG.md` under a new subsection at the same level as the "Azure Spring Data Cosmos" note (e.g., "Azure Spring Event Hubs Starter", etc.).
+     - Parse the same release section, do not modify other release sections.
+     - If the current section has any real content (not only '-' / empty), AGGREGATE it into the top-level `sdk/spring/CHANGELOG.md` under a new subsection at the same level as the "Azure Spring Data Cosmos" note (e.g., "Azure Spring Event Hubs Starter", etc.).
      - Preserve headings and bullet formatting; collapse purely empty subsections.
        
   8) Manually bump `azure-sdk-bom` version to `AZURE_SDK_BOM_VERSION` in `sdk/spring/spring-cloud-azure-dependencies/pom.xml`.
@@ -144,8 +144,9 @@ checklist:
   - "[ ] Updated spring-cloud-azure-dependencies BOM to ${AZURE_SDK_BOM_VERSION}"
   - "[ ] Added compatibility notes to sdk/spring/CHANGELOG.md"
   - "[ ] Added Spring Cloud Azure Dependencies (BOM) section"
-  - "[ ] Added Azure Spring Data Cosmos section"
-  - "[ ] Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`" and move contents."
-  - "[ ] Updated all CHANGELOGs"
+  - "[ ] Added Azure Spring Data Cosmos section at the right place"
+  - "[ ] Updated `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`"
+  - "[ ] Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`" updated and moved contents into `sdk/spring/CHANGELOG.md` if exists."
+  - "[ ] Do not modify other release sections"
   - "[ ] Opened PR: Prepare for Spring Cloud Azure <RELEASE_VERSION> release"
 
