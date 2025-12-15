@@ -146,7 +146,8 @@ checklist:
   - "[ ] Added Spring Cloud Azure Dependencies (BOM) section"
   - "[ ] Added Azure Spring Data Cosmos section at the right place"
   - "[ ] Updated `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`"
-  - "[ ] Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`" updated and moved contents into `sdk/spring/CHANGELOG.md` if exists."
+  - "[ ] Check all `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md`" updated."
+  - "[ ] Make sure moved contents of `sdk/spring/xxx/CHANGELOG.md` except `sdk/spring/azure-spring-data-cosmos/CHANGELOG.md` into the top‑level `sdk/spring/CHANGELOG.md` when they contain actual changes."
   - "[ ] Do not modify other release sections"
   - "[ ] Opened PR: Prepare for Spring Cloud Azure <RELEASE_VERSION> release"
 
