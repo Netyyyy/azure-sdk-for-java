@@ -71,7 +71,7 @@ instructions: |
      - com.azure.spring:spring-cloud-azure-testcontainers;
      - com.azure:azure-spring-data-cosmos;
 
-  2) Directly run `python eng/versioning/update_versions.py` to update file versions.
+  2) Directly run `python eng/versioning/update_versions.py` to update file versions, do not skip readme.
      
   3) Revert unrelated file changes:
      - After the script runs, only keep changes update under `sdk/spring/**` and `sdk/boms/spring-cloud-azure-dependencies`. Revert all other changes.
