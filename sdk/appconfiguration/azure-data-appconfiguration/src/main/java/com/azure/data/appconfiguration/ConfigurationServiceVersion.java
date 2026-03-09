@@ -39,7 +39,7 @@ public enum ConfigurationServiceVersion implements ServiceVersion {
     }
 
     /**
-     * Gets the latest service version supported by this client library
+     * Gets the latest service version supported by this client library.
      *
      * @return the latest {@link ConfigurationServiceVersion}
      */
